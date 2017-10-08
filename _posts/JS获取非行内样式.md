@@ -1,0 +1,26 @@
+---
+layout: post
+title: JS获取非行内样式
+date: 2017-09-15 22:37:30
+author: Leonsux
+catalog: true
+tags: JS
+---
+先看几种获取元素样式(以width为例)的方法以及其局限性
+1. `oDiv.style.width;`
+这种方法只能获取行内样式
+2. `oDiv.offsetWidth;`
+这种方法获取到的是元素的可视宽度，即 `width + padding + border`，而我们需要的是width
+3. ` oDiv.currentStyle.width;`
+这种方法可以获取到非行内样式，并且得到值是带单位的(width的话，单位是：px; eg: 100px)，但是只有低版本IE可以用，标准浏览器不识别
+4. `oDiv.getComputerStyle(oDiv, 1).width;`
+可以获取到非行内样式，并且得到值是带单位，标准浏览器支持，IE不支持
+
+比较上面四种方式，可以将后两种方法封装起来做个兼容
+```
+function getStyle(obj, attribute){
+	return obj.currentStyle? parseInt(obj.currentStyle[attribute]) : parseInt(obj.getComputerStyle(obj, 1)[attribute]);
+}
+```
+函数里的 `parseInt` 是为了把单位去掉
+`obj.currentStyle[attribute])` 这里currentStyle与attibute之间的连接不能用 `.`，因为在这里 `attribute` 是变量，只能使用 `[ ]`
