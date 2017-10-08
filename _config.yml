@@ -4,7 +4,7 @@ SEOTitle: Leonsux Blog
 header-img: img/post-bg-desk.jpg
 email: gooleonsux@gmail.com
 description: "Every failure is leading towards success."
-keyword: "leonsux, leon, bolg, 博客, 前端, HTML, JavaScript, JS"
+keyword: "leonsux, leon, bolg, 博客, 前端, HTML, JavaScript, JS, Git, Github"
 url: "https://leonsux.github.io/"
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
@@ -23,7 +23,7 @@ zhihu_username:     sun-zy-84/activities
 github_username:    leonsux
 facebook_username:  
 jianshu_username:   2a0b2825ab82
-#twitter_username:   qiubaiying
+#twitter_username:   
 
 
 
