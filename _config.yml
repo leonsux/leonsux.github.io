@@ -4,14 +4,14 @@ SEOTitle: Leonsux Blog
 header-img: img/post-bg-desk.jpg
 email: gooleonsux@gmail.com
 description: "Every failure is leading towards success."
-keyword: "leonsux, leon, bolg, 博客, 前端, HTML, JavaScript, JS, Git, Github"
+keyword: "leonsux, leon, bolg, 博客, 前端, HTML, JavaScript, JS, Git, Github, Vue, React"
 url: "https://leonsux.github.io/"
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
+github_repo: "https://github.com/leonsux/leonsux.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "做一个呕心沥血的普通人"
+sidebar-about-description: "Try Everything"
 sidebar-avatar: /img/me.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -57,6 +57,16 @@ kramdown:
 # 评论系统
 # Disqus settings（https://disqus.com/）
 disqus_username: leonsux
+
+# Gitalk
+gitalk:
+  enable: true    #是否开启Gitalk评论
+  clientID: 7426f6dc6861afa0d410   #生成的clientID
+  clientSecret: 9b2bda64861621e4b00ea7e851c88c7d0793ee73  #同上
+  repo: leonsux.github.io    #仓库名称
+  owner: leonsux    #github用户名
+  admin: leonsux
+  distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
 
