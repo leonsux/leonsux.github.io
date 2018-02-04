@@ -103,5 +103,8 @@ friends: [
     },{
         title: "github",
         href: "https://github.com/leonsux"
+    },{
+        title: "segmentfault",
+        href: "https://segmentfault.com/u/xiansui"
     }
 ]
