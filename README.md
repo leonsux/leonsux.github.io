@@ -1,6 +1,6 @@
 ### Leonsux
 
-博客地址：[http://leonsux.top/](http://leonsux.top/)
+博客地址：[https://leonsux.github.io](https://leonsux.github.io) ~~http://leonsux.top~~
 
 以前的博客是用 [Hexo](https://hexo.io/zh-cn/docs/) 搭建的
 
