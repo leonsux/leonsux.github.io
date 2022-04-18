@@ -106,5 +106,8 @@ friends: [
     },{
         title: "segmentfault",
         href: "https://segmentfault.com/u/xiansui"
+    }, {
+        title: "掘金",
+        href: "https://juejin.cn/user/905653311247688"
     }
 ]
