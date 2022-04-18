@@ -1,3 +1,14 @@
+---
+layout: post
+title: LeetCode 刷题笔记【206. 反转链表】
+date: 2022-04-18
+author: Leonsux
+catalog: true
+tags: 
+  - 算法
+  - 链表
+---
+
 ## 题目
 
 https://leetcode-cn.com/problems/reverse-linked-list
