@@ -124,7 +124,7 @@ layout: default
                         repo: `leonsux.github.io`,
                         owner: 'leonsux',
                         admin: ['leonsux'],
-                        id: decodeURI(location.pathname),
+                        id: decodeURI(location.pathname).slice(0, 49),
                     
                     });
                     gitalk.render('gitalk-container');
