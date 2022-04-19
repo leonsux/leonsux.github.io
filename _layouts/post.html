@@ -124,7 +124,7 @@ layout: default
                         repo: `leonsux.github.io`,
                         owner: 'leonsux',
                         admin: ['leonsux'],
-                        id: '页面的唯一标识，gitalk会根据这个标识自动创建的issue的标签',
+                        id: decodeURIComponent(location.pathname).slice(0, 49),
                     
                     });
                     gitalk.render('gitalk-container');
