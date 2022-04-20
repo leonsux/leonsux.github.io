@@ -92,6 +92,12 @@
                 </ul>
                 <p class="copyright text-muted">
                     Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
+                    <span id="busuanzi_container_site_pv">
+                        本站总访问量：1,196 + <span id="busuanzi_value_site_pv"></span>次
+                    </span>
+                    <span id="busuanzi_container_site_uv">
+                        本站访客数：837 + <span id="busuanzi_value_site_uv"></span>人次
+                    </span>
                     <br>
                     Theme on <a href="{{ site.github_repo }}">GitHub</a> |
                     <iframe
@@ -104,6 +110,9 @@
         </div>
     </div>
 </footer>
+
+<!-- 数据统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!-- jQuery -->
 <script src="{{ "/js/jquery.min.js " | prepend: site.baseurl }}"></script>
