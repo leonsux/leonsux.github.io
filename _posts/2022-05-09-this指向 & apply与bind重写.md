@@ -19,7 +19,7 @@ tags:
 'use strict';
 var a = 123;
 function fn() {
-	console.log(this.a); // 严格模式下 this 为undefined；非严格模式为 全局对象
+  console.log(this.a); // 严格模式下 this 为undefined；非严格模式为 全局对象
 }
 
 window.fn(); // 123 , fn 被 window调用，this 为 window
@@ -27,12 +27,12 @@ window.fn(); // 123 , fn 被 window调用，this 为 window
 fn(); // 报错，this为 undefined，
 
 var obj = {
-	speak: function() {
-		console.log('speak', this)
-	},
-	say: () => {
-		console.log('say', this)
-	}
+  speak: function() {
+    console.log('speak', this)
+  },
+  say: () => {
+    console.log('say', this)
+  }
 }
 obj.speak(); // 函数由 obj 调用，故 this 指向 obj
 obj.say(); // say 函数 所在的执行上下文为全局执行上下文，故 this 指向全局对象（浏览器中为 window ）
