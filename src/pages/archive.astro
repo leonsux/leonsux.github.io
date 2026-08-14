@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate, sortPosts } from '../utils/posts';
+
+const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+const years = Object.entries(Object.groupBy(posts, ({ data }) => String(data.publishedAt.getFullYear())))
+  .sort(([a], [b]) => Number(b) - Number(a));
+---
+
+<BaseLayout title="归档" description="按年份浏览 leonsux 的全部文章。">
+  <PageIntro eyebrow="Archive" title="归档" description="把旧文章保留下来，也让技术路径的变化有迹可循。" />
+  <div class="archive page-shell">
+    {years.map(([year, yearPosts]) => (
+      <section aria-labelledby={`year-${year}`}>
+        <h2 id={`year-${year}`}>{year}</h2>
+        <ol>
+          {yearPosts?.map(({ data }) => (
+            <li>
+              <time datetime={data.publishedAt.toISOString()}>{formatDate(data.publishedAt)}</time>
+              <a href={data.permalink}>{data.title}</a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .archive {
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+  }
+
+  section {
+    display: grid;
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-line);
+    gap: 2rem;
+    grid-template-columns: minmax(5rem, 0.3fr) 1fr;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    padding: 0.5rem 0;
+    gap: 1rem;
+    grid-template-columns: 8.5rem 1fr;
+  }
+
+  time {
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+  }
+
+  li a {
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  @media (max-width: 38rem) {
+    section,
+    li {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      gap: 0.2rem;
+    }
+  }
+</style>

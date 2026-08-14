@@ -1,0 +1,12 @@
+---
+import PageIntro from '../../components/PageIntro.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="项目" description="leonsux 的代表项目。" canonical="/projects/" noindex>
+  <PageIntro eyebrow="Legacy portfolio" title="项目" description="旧作品集地址继续保留，内容已经合并到新的项目页面。" />
+  <section class="projects page-shell"><ProjectGrid /></section>
+</BaseLayout>
+
+<style>.projects { padding-bottom: clamp(4rem, 10vw, 8rem); }</style>

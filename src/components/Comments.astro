@@ -1,0 +1,54 @@
+<section class="comments content-shell" aria-labelledby="comments-title">
+  <header>
+    <p class="eyebrow">Discussion</p>
+    <h2 id="comments-title">评论</h2>
+    <p>评论由 GitHub Discussions 提供，需要使用 GitHub 账号参与。</p>
+  </header>
+  <div class="giscus"></div>
+  <script
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo="leonsux/leonsux.github.io"
+    data-repo-id="R_kgDOHNRIgA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOHNRIgM4DDYVB"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+  ></script>
+</section>
+
+<style>
+  .comments {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  header {
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: -0.035em;
+  }
+
+  header > p:last-child {
+    margin: 0.35rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.86rem;
+  }
+
+  .giscus {
+    min-height: 8rem;
+  }
+</style>

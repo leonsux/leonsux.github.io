@@ -1,0 +1,112 @@
+# ROADMAP
+
+## 项目目标
+
+将现有 Jekyll/Hux 博客重构为 Astro 静态站点，继续托管于 GitHub Pages，并完成个人品牌、内容结构、性能、安全和可维护性升级。
+
+## 当前阶段
+
+- 状态：本地发布候选准备完成，等待远端发布确认。
+- 日期：2026-08-15。
+- 当前工作：进行发布前验收，等待公开部署确认。
+- 当前生产分支：`master`。
+- 当前本地发布候选：无旧父提交的 `main`；原 `master` 与 `codex/astro-rebuild` 仍保留用于恢复。
+
+## 现状基线
+
+- 现有技术栈：Jekyll、Hux Blog、Bootstrap 3、jQuery、Less、Grunt。
+- 文章源文件：25 篇，其中线上已发布 24 篇，另有 1 篇因文件名不符合 Jekyll 规则而未进入线上文章目录。
+- 最新文章日期：2022-06-14。
+- 最近仓库提交日期：2024-04-30。
+- 线上地址：`https://leonsux.github.io/`。
+- 已发现问题：Gitalk OAuth Secret 公开、Universal Analytics 已失效、旧 Service Worker 长期缓存、第三方脚本过多、缺少部分本地资源、站点定位和内容首页过时。
+
+## 已完成
+
+- [x] 只读检查仓库结构、主要模板、线上页面和移动端布局。
+- [x] 确认采用 Astro＋TypeScript＋GitHub Pages 的重构路线。
+- [x] 确认原生 CSS、默认零客户端 JavaScript、giscus 评论和保留历史 URL 的边界。
+- [x] 建立项目级 `AGENTS.md` 和本进度文档。
+- [x] 初始化 Astro、TypeScript、原生 CSS 与官方 RSS／Sitemap 依赖。
+- [x] 迁移 25 篇 Markdown，并为 24 篇线上旧文章保留原 permalink。
+- [x] 完成首页、文章列表、正文、标签、归档、项目、关于、404 和旧页面兼容路由。
+- [x] 添加 canonical、Open Graph 基础字段、JSON-LD、RSS、Sitemap 和深色模式。
+- [x] 添加旧 Service Worker 自注销文件与页面侧取消注册逻辑。
+- [x] 仓库所有者已删除旧 Gitalk OAuth App，使历史中公开的 OAuth Secret 失效。
+- [x] 完成生产构建、历史 URL 检查和本地核心页面 HTTP 抽查。
+- [x] 按 Astro 官方方案添加 GitHub Pages Actions 工作流，同时兼容 `main` 与现有 `master` 分支。
+- [x] 使用真实仓库与 Announcements 分类标识接入 giscus，按文章 pathname 严格映射。
+- [x] 经确认删除旧 Jekyll/Hux 源码、旧许可证和未引用模板资源，保留已迁移正文与实际引用截图。
+- [x] 使用原创 SVG favicon 替换旧模板图标。
+- [x] 从验证后的 Astro 文件树创建无父提交的本地 `main` 发布候选，未修改远端。
+
+## 进行中
+
+- [ ] 处理需要仓库所有者确认的线上配置与发布步骤。
+
+## 待办
+
+### 阶段一：安全与基线
+
+- [x] 撤销已公开的 Gitalk OAuth Secret。
+- [x] 设计并验证旧 Service Worker 自注销构建产物。
+- [x] 记录所有需要兼容的页面和文章地址，清单位于 `scripts/legacy-urls.json`。
+
+### 阶段二：Astro 基础
+
+- [x] 初始化 Astro 和必要官方依赖。
+- [x] 建立内容集合、基础布局、设计变量和路由。
+- [x] 完成首页最小可识别预览。
+
+### 阶段三：内容与页面
+
+- [x] 迁移 25 篇 Markdown，保持历史文章 URL。
+- [x] 完成首页、文章列表、正文、标签、归档和关于页面。
+- [x] 核验公开项目后完成项目页面。
+- [x] 为旧页面建立兼容路由。
+
+### 阶段四：内容能力
+
+- [x] 添加 RSS、Sitemap、canonical、Open Graph 基础字段和 JSON-LD。
+- [x] 接入 giscus。
+- [x] 添加深色模式、文章目录和必要的无障碍支持。
+- [ ] 制作站点级社交分享图。
+
+### 阶段五：验证与发布
+
+- [x] 通过 Astro 检查和生产构建。
+- [ ] 完成移动端、键盘操作、资源加载和控制台状态的最终浏览器验收。
+- [x] 验证构建产物中的历史 URL，并抽查核心路由 HTTP 状态。
+- [x] 经确认后添加 GitHub Pages CI/CD。
+- [ ] 单独确认后公开部署。
+- [x] 经确认清理旧 Jekyll/Hux 文件。
+- [ ] 经过一个发布周期后，单独确认并移除退役 Service Worker。
+
+## 阻塞与确认门禁
+
+- 旧 Gitalk OAuth App 已删除；发布候选中不再包含 Secret 配置，旧提交中的值也已经失效。
+- GitHub Discussions 与 giscus GitHub App 均已启用，评论配置已完成。
+- 本地干净 `main` 已创建；推送新分支、替换远端默认分支和触发部署仍需单独确认。
+- 公开部署前必须再次确认。
+- 站点级社交分享图的内置生成服务本轮发生网络错误，未使用需要 API Key 的回退方案。
+
+## 最近验证
+
+- 2026-08-14：工作区开始实施前为干净状态。
+- 2026-08-14：确认项目中原先不存在项目级 `AGENTS.md` 和 `ROADMAP.md`。
+- 2026-08-14：确认 Contributors 中的旧模板作者来自默认分支提交历史；GitHub 官方说明历史改写后统计可能需要约 24 小时刷新。
+- 2026-08-15：从线上三页文章目录提取 24 个公开文章 URL，并确认 1 个 Markdown 源文件当前未发布。
+- 2026-08-15：解析 `scripts/legacy-urls.json` 成功；确认 9 个页面地址、24 个唯一文章地址和 25 个唯一源文件记录。
+- 2026-08-15：`npm run build` 通过；Astro 检查结果为 0 errors、0 warnings、0 hints，共生成 36 个页面。
+- 2026-08-15：`npm run verify:urls` 通过；验证 34 个历史及迁移地址均存在于构建产物。
+- 2026-08-15：抽查首页、文章、项目、关于、标签、归档、RSS、404 和两类历史文章路径，HTTP 状态均为 200。
+- 2026-08-15：通过 GitHub 公开 API 核对代表项目；确认仓库 `leonsux/leonsux.github.io` 当前未启用 Discussions。
+- 2026-08-15：通过 npm 官方安全公告接口审计生产依赖，结果为 0 vulnerabilities。
+- 2026-08-15：确认 Discussions 已启用；giscus 官方接口确认该仓库尚未安装 giscus GitHub App。
+- 2026-08-15：依据 Astro 官方 `withastro/action@v6` 方案添加 GitHub Pages 工作流；未 push、未触发部署。
+- 2026-08-15：通过 giscus 官方接口取得真实仓库与 Announcements 分类标识，并将评论接入全部文章页面。
+- 2026-08-15：确认 25 个文章构建产物均包含 giscus 配置；本机文章预览与 giscus 客户端脚本均返回 HTTP 200。
+- 2026-08-15：仓库所有者确认已删除旧 Gitalk OAuth App，公开过的 OAuth Secret 已撤销。
+- 2026-08-15：经确认清理 149 个旧 Jekyll/Hux 文件及未引用模板资源；原文件仍可从本地 `master` 恢复。
+- 2026-08-15：清理后重新构建 36 个页面，Astro 检查维持 0 errors、0 warnings、0 hints，34 个历史及迁移地址全部通过。
+- 2026-08-15：创建无父提交的本地 `main` 发布候选；原 `master` 与 `codex/astro-rebuild` 保持不变，远端未修改。

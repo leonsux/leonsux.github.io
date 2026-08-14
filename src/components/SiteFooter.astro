@@ -1,0 +1,52 @@
+---
+import { site } from '../data/site';
+---
+
+<footer>
+  <div class="page-shell footer-inner">
+    <p>© {new Date().getFullYear()} {site.title}</p>
+    <div class="footer-links">
+      <a href="/archive/">归档</a>
+      <a href="/feed.xml">RSS</a>
+      <a href={`mailto:${site.email}`}>Email</a>
+      <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 5rem;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
+  .footer-inner,
+  .footer-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-inner {
+    min-height: 6rem;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    gap: 1rem;
+  }
+
+  @media (max-width: 32rem) {
+    .footer-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .footer-inner p {
+      margin: 0;
+    }
+  }
+</style>

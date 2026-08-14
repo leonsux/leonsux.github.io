@@ -1,0 +1,242 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Comments from '../components/Comments.astro';
+import { site } from '../data/site';
+import { formatDate } from '../utils/posts';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  tags: string[];
+  permalink: string;
+  headings?: Heading[];
+  legacy?: boolean;
+}
+
+const {
+  title,
+  description,
+  publishedAt,
+  updatedAt,
+  tags,
+  permalink,
+  headings = [],
+  legacy = false,
+} = Astro.props;
+const toc = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: publishedAt.toISOString(),
+  dateModified: (updatedAt ?? publishedAt).toISOString(),
+  mainEntityOfPage: new URL(permalink, site.url).toString(),
+  author: {
+    '@type': 'Person',
+    name: 'leonsux',
+    url: site.url,
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={permalink}
+  type="article"
+  publishedAt={publishedAt}
+  updatedAt={updatedAt}
+  jsonLd={jsonLd}
+>
+  <article class="post-shell">
+    <header class="post-header content-shell">
+      <p class="eyebrow">Engineering note</p>
+      <h1>{title}</h1>
+      <p class="post-description">{description}</p>
+      <div class="post-meta">
+        <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+        {tags.map((tag) => <a href={`/tags/#${encodeURIComponent(tag)}`}>#{tag}</a>)}
+      </div>
+      {legacy && (
+        <p class="legacy-note">这篇文章从旧博客迁移而来，正文观点和示例保留了原始发布时的技术背景。</p>
+      )}
+    </header>
+
+    {toc.length >= 3 && (
+      <nav class="toc content-shell surface" aria-label="文章目录">
+        <p>目录</p>
+        <ol>
+          {toc.map((heading) => (
+            <li class:list={{ nested: heading.depth === 3 }}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
+    <div class="post-content content-shell">
+      <slot />
+    </div>
+
+    <footer class="post-footer content-shell">
+      <a href="/posts/">← 返回全部文章</a>
+    </footer>
+
+    <Comments />
+  </article>
+</BaseLayout>
+
+<style>
+  .post-shell {
+    padding-block: clamp(4rem, 9vw, 7rem);
+  }
+
+  .post-header h1 {
+    margin: 0;
+    font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+  }
+
+  .post-description {
+    margin: 1.4rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 2vw, 1.14rem);
+  }
+
+  .post-meta {
+    display: flex;
+    margin-top: 1.4rem;
+    flex-wrap: wrap;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    gap: 0.65rem 1rem;
+  }
+
+  .post-meta a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .legacy-note {
+    margin: 1.4rem 0 0;
+    padding: 0.8rem 1rem;
+    border-left: 0.22rem solid var(--color-accent);
+    color: var(--color-muted);
+    background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+    font-size: 0.86rem;
+  }
+
+  .toc {
+    margin-top: 2.5rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .toc p {
+    margin: 0 0 0.5rem;
+    font-weight: 750;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .toc li {
+    padding-block: 0.15rem;
+  }
+
+  .toc li.nested {
+    margin-left: 1rem;
+  }
+
+  .toc a {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+  }
+
+  .post-content {
+    padding-top: 3rem;
+    font-size: clamp(1rem, 1.6vw, 1.08rem);
+  }
+
+  .post-content :global(h2),
+  .post-content :global(h3),
+  .post-content :global(h4) {
+    scroll-margin-top: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+
+  .post-content :global(h2) {
+    margin: 3rem 0 1rem;
+    font-size: clamp(1.65rem, 4vw, 2.15rem);
+  }
+
+  .post-content :global(h3) {
+    margin: 2.3rem 0 0.8rem;
+    font-size: clamp(1.3rem, 3vw, 1.65rem);
+  }
+
+  .post-content :global(p),
+  .post-content :global(ul),
+  .post-content :global(ol),
+  .post-content :global(blockquote) {
+    margin-block: 1.2rem;
+  }
+
+  .post-content :global(blockquote) {
+    margin-inline: 0;
+    padding: 0.2rem 1.2rem;
+    border-left: 0.22rem solid var(--color-accent);
+    color: var(--color-muted);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  }
+
+  .post-content :global(a) {
+    color: var(--color-accent);
+  }
+
+  .post-content :global(img) {
+    margin-block: 1.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+  }
+
+  .post-content :global(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  .post-content :global(th),
+  .post-content :global(td) {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--color-line);
+    text-align: left;
+  }
+
+  .post-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .post-footer a {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>

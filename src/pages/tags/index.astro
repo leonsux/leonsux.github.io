@@ -1,0 +1,121 @@
+---
+import { getCollection } from 'astro:content';
+import PageIntro from '../../components/PageIntro.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sortPosts } from '../../utils/posts';
+
+const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+const tagMap = new Map<string, typeof posts>();
+
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    tagMap.set(tag, [...(tagMap.get(tag) ?? []), post]);
+  }
+}
+
+const tags = [...tagMap.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0], 'zh-CN'));
+---
+
+<BaseLayout title="标签" description="按主题浏览前端、JavaScript、React 与工程实践文章。">
+  <PageIntro eyebrow="Topics" title="标签" description={`从 ${tags.length} 个主题进入文章库，快速找到同一知识脉络中的内容。`} />
+  <div class="tag-index page-shell">
+    <nav class="tag-cloud" aria-label="标签索引">
+      {tags.map(([tag, taggedPosts]) => <a href={`#${encodeURIComponent(tag)}`}>{tag}<sup>{taggedPosts.length}</sup></a>)}
+    </nav>
+    <div class="tag-groups">
+      {tags.map(([tag, taggedPosts]) => (
+        <section id={tag} aria-labelledby={`${tag}-title`}>
+          <h2 id={`${tag}-title`}>{tag}</h2>
+          <ol>
+            {taggedPosts.map(({ data }) => (
+              <li>
+                <a href={data.permalink}>{data.title}</a>
+                <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.getFullYear()}</time>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .tag-index {
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+  }
+
+  .tag-cloud {
+    display: flex;
+    padding-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .tag-cloud a {
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    color: var(--color-muted);
+    font-size: 0.83rem;
+    text-decoration: none;
+  }
+
+  .tag-cloud sup {
+    margin-left: 0.35rem;
+    color: var(--color-accent);
+  }
+
+  .tag-groups {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  section {
+    scroll-margin-top: 1rem;
+    padding: 1.3rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+  }
+
+  h2 {
+    margin: 0 0 0.8rem;
+    color: var(--color-accent);
+    font-size: 1.15rem;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    padding-block: 0.45rem;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-line);
+    gap: 1rem;
+  }
+
+  li a {
+    font-size: 0.9rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  time {
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+  }
+
+  @media (max-width: 46rem) {
+    .tag-groups {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

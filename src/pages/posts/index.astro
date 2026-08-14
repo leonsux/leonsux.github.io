@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import PageIntro from '../../components/PageIntro.astro';
+import PostList from '../../components/PostList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sortPosts } from '../../utils/posts';
+
+const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+---
+
+<BaseLayout title="文章" description="工程实践、前端基础与 AI 产品构建笔记。">
+  <PageIntro eyebrow="Writing" title="文章" description={`共 ${posts.length} 篇。写代码，也记录代码背后的判断、取舍和方法。`} />
+  <section class="page-shell listing" aria-label="全部文章">
+    <PostList posts={posts} />
+    <p class="archive-link"><a href="/archive/">按年份浏览归档 →</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .listing {
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+  }
+
+  .archive-link {
+    margin-top: 2rem;
+    text-align: right;
+  }
+
+  .archive-link a {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>

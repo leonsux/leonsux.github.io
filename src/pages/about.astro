@@ -1,0 +1,101 @@
+---
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="关于" description="关于全栈开发者与 AI 产品实践者 leonsux。">
+  <PageIntro eyebrow="About" title="关于我" description="全栈开发工程师、互联网技术与产品人，也是一名持续把 AI 用进真实工作流的实践者。" />
+  <div class="about-grid page-shell">
+    <div class="about-copy">
+      <section>
+        <p class="eyebrow">What I do</p>
+        <h2>在技术、产品和内容之间工作。</h2>
+        <p>我关注从问题定义到产品落地的完整过程：理解需求、选择技术路径、构建界面与系统，再把有效的方法沉淀成可复用的工作流。</p>
+        <p>近期的主要方向是 AI 编程工具与 Agent 工程、个人知识管理，以及让内容生产和软件开发彼此增强。</p>
+      </section>
+      <section>
+        <p class="eyebrow">Beyond work</p>
+        <h2>动漫、运动和长期主义。</h2>
+        <p>工作之外喜欢动漫和乒乓球。这个博客既保留早期前端学习记录，也会继续写下新的构建过程；旧文章不刻意粉饰，但会标注它所在的技术语境。</p>
+      </section>
+    </div>
+    <aside class="contact-card surface">
+      <p class="eyebrow">Find me</p>
+      <ul>
+        <li><span>GitHub</span><a href={site.github} target="_blank" rel="noreferrer">@leonsux ↗</a></li>
+        <li><span>掘金</span><a href={site.juejin} target="_blank" rel="noreferrer">leonsux ↗</a></li>
+        <li><span>Email</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+    align-items: start;
+    gap: clamp(2rem, 7vw, 6rem);
+    grid-template-columns: minmax(0, 1.3fr) minmax(17rem, 0.7fr);
+  }
+
+  .about-copy {
+    display: grid;
+    gap: 3.5rem;
+  }
+
+  h2 {
+    max-width: 20ch;
+    margin: 0 0 1rem;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
+
+  section > p:not(.eyebrow) {
+    max-width: 44rem;
+    color: var(--color-muted);
+  }
+
+  .contact-card {
+    position: sticky;
+    top: 1rem;
+    padding: 1.4rem;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    padding-block: 0.8rem;
+    border-top: 1px solid var(--color-line);
+    font-size: 0.84rem;
+    gap: 1rem;
+    grid-template-columns: 4rem 1fr;
+  }
+
+  li span {
+    color: var(--color-muted);
+  }
+
+  li a {
+    overflow-wrap: anywhere;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  @media (max-width: 48rem) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      position: static;
+    }
+  }
+</style>

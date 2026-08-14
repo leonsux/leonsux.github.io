@@ -1,0 +1,14 @@
+---
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="关于" description="关于 leonsux。" canonical="/about/" noindex>
+  <PageIntro eyebrow="Moved" title="关于页面已迁移" description="这个旧地址继续保留。新的个人介绍与联系方式已经整理到关于页面。" />
+  <div class="page-shell action"><a href="/about/">前往关于页面 →</a></div>
+</BaseLayout>
+
+<style>
+  .action { padding-bottom: clamp(4rem, 10vw, 8rem); }
+  .action a { color: var(--color-accent); font-weight: 750; text-decoration: none; }
+</style>

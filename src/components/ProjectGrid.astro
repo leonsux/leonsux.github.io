@@ -1,0 +1,97 @@
+---
+import { projects } from '../data/projects';
+---
+
+<div class="project-grid">
+  {projects.map((project, index) => (
+    <article>
+      <div class="project-number">{String(index + 1).padStart(2, '0')}</div>
+      <div class="project-copy">
+        <div class="project-meta">
+          <span>{project.language}</span>
+          <span>{project.status === 'active' ? '持续探索' : '历史项目'}</span>
+        </div>
+        <h2>{project.name}</h2>
+        <p>{project.description}</p>
+        <div class="project-links">
+          {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">在线体验 ↗</a>}
+          <a href={project.source} target="_blank" rel="noreferrer">查看源码 ↗</a>
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .project-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  article {
+    display: grid;
+    min-height: 20rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    gap: 2rem;
+    grid-template-columns: auto 1fr;
+  }
+
+  .project-number {
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .project-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+  }
+
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    gap: 1rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 2.5rem 0 0;
+    font-size: clamp(1.75rem, 4vw, 2.45rem);
+    letter-spacing: -0.045em;
+  }
+
+  p {
+    margin: 0.8rem 0 1.5rem;
+    color: var(--color-muted);
+    font-size: 0.93rem;
+  }
+
+  .project-links {
+    display: flex;
+    margin-top: auto;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.2rem;
+  }
+
+  .project-links a {
+    color: var(--color-accent);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (max-width: 50rem) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

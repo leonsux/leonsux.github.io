@@ -1,0 +1,12 @@
+---
+import LegacyListing from '../components/LegacyListing.astro';
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="文章 · 第 2 页" description="旧版博客文章分页兼容页。" noindex>
+  <PageIntro eyebrow="Legacy page 02" title="更早的文章" description="这是为旧链接保留的兼容页面，全部内容已统一收录到新的文章索引。" />
+  <section class="page-shell listing"><LegacyListing page={2} /></section>
+</BaseLayout>
+
+<style>.listing { padding-bottom: clamp(4rem, 10vw, 8rem); }</style>

@@ -1,0 +1,26 @@
+---
+import PageIntro from '../../components/PageIntro.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="项目" description="leonsux 的 AI 产品、网页工具与交互实验。">
+  <PageIntro eyebrow="Selected work" title="项目" description="从 AI 陪伴应用到纯前端交互实验。这里关注的不是技术栈清单，而是一个想法如何被做成可用的东西。" />
+  <section class="projects page-shell" aria-label="代表项目">
+    <ProjectGrid />
+    <p class="source-note">项目状态与介绍基于公开仓库信息整理于 2026 年 8 月。</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects {
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+  }
+
+  .source-note {
+    margin: 1.5rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    text-align: right;
+  }
+</style>

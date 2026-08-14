@@ -1,0 +1,32 @@
+{
+  "name": "leonsux.github.io",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "leonsux 的个人网站与技术博客",
+  "author": "leonsux <leonsux@163.com>",
+  "homepage": "https://leonsux.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leonsux/leonsux.github.io.git"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "build": "npm run check && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "verify:urls": "node scripts/check-legacy-urls.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "7.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "typescript": "6.0.3"
+  }
+}

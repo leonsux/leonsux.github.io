@@ -1,0 +1,69 @@
+---
+import { site } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="page-shell header-inner">
+    <a class="brand" href="/" aria-label="返回首页">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span>{site.title}</span>
+    </a>
+    <nav aria-label="主导航">
+      <a href="/posts/">文章</a>
+      <a href="/projects/">项目</a>
+      <a href="/about/">关于</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid rgb(28 34 43 / 10%);
+  }
+
+  .header-inner {
+    display: flex;
+    min-height: 4.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    display: grid;
+    width: 2rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 0.45rem;
+    color: white;
+    background: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  nav {
+    display: flex;
+    gap: clamp(1rem, 4vw, 2rem);
+    font-size: 0.9rem;
+    font-weight: 650;
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 32rem) {
+    .brand > span:last-child {
+      display: none;
+    }
+  }
+</style>

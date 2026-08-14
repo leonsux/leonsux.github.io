@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from './PostList.astro';
+import { sortPosts } from '../utils/posts';
+
+interface Props {
+  page: number;
+  pageSize?: number;
+}
+
+const { page, pageSize = 10 } = Astro.props;
+const allPosts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+const posts = allPosts.slice((page - 1) * pageSize, page * pageSize);
+---
+
+<PostList posts={posts} />
+<nav class="pagination" aria-label="旧版文章分页">
+  {page > 1 && <a href={page === 2 ? '/' : `/page${page - 1}/`}>← 更新文章</a>}
+  <a href="/posts/">查看全部文章</a>
+  {page * pageSize < allPosts.length && <a href={`/page${page + 1}/`}>更早文章 →</a>}
+</nav>
+
+<style>
+  .pagination {
+    display: flex;
+    padding-top: 1.5rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .pagination a {
+    color: var(--color-accent);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+</style>
