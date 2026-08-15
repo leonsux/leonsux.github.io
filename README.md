@@ -30,4 +30,4 @@ npm run preview
 
 ## 项目状态
 
-GitHub Pages 工作流、giscus 评论和旧 Jekyll 清理已经完成。当前本地 `main` 是没有旧模板父提交的干净发布候选；远端默认分支切换和公开部署仍需单独确认。实际进度以 [ROADMAP.md](./ROADMAP.md) 为准。
+Astro 重构版本已经通过 GitHub Actions 发布到 GitHub Pages。远端默认分支为没有旧模板父提交的 `main`，旧 `master` 仅作为备份保留；giscus 评论、历史 URL 兼容和旧 Jekyll 清理均已完成。实际进度以 [ROADMAP.md](./ROADMAP.md) 为准。
