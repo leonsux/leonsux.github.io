@@ -28,11 +28,11 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', {
 <style>
   article {
     display: flex;
-    min-height: 17rem;
-    padding: clamp(1.25rem, 3vw, 1.75rem);
+    min-height: 14.5rem;
+    padding: clamp(1.2rem, 2.5vw, 1.5rem);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
-    background: rgb(255 253 248 / 78%);
+    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
     box-shadow: 0 1rem 3rem transparent;
     flex-direction: column;
     transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
@@ -61,7 +61,7 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', {
 
   h3 {
     margin: 0;
-    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.45rem);
     line-height: 1.35;
     letter-spacing: -0.025em;
   }
@@ -72,13 +72,13 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', {
 
   p {
     display: -webkit-box;
-    margin: 0.9rem 0 1.4rem;
+    margin: 0.75rem 0 1.2rem;
     overflow: hidden;
     color: var(--color-muted);
     font-size: 0.94rem;
     line-height: 1.75;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
   }
 
   .read-more {

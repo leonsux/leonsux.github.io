@@ -5,28 +5,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
-const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
+const latestPosts = posts.slice(0, 3);
 ---
 
 <BaseLayout>
   <section class="hero page-shell">
     <div class="hero-copy">
       <p class="eyebrow">Full-stack engineer · AI builder</p>
-      <h1>把技术变成产品，<br /><span>把实践写成方法。</span></h1>
+      <h1>把技术讲清楚，<br />把产品做出来。</h1>
       <p class="intro">
-        我是 leonsux，一名全栈开发工程师与 AI 产品实践者。这里记录我在 AI 编程工具、产品构建和知识管理中的真实探索。
+        我是 leonsux，全栈开发工程师与 AI 产品实践者。这里记录 AI 编程、产品构建与知识工作的真实方法。
       </p>
       <div class="hero-actions">
         <a class="primary-action" href="#writing">阅读文章</a>
         <a class="secondary-action" href="https://github.com/leonsux" target="_blank" rel="noreferrer">查看 GitHub</a>
       </div>
     </div>
-    <aside class="focus-card" aria-label="当前关注">
-      <p>NOW / 2026</p>
+    <aside class="focus-card" aria-labelledby="focus-title">
+      <div class="focus-kicker">
+        <span>NOW</span>
+        <span>2026</span>
+      </div>
+      <h2 id="focus-title">正在关注</h2>
       <ul>
-        <li><span>01</span>AI 编程与 Agent 工程</li>
-        <li><span>02</span>从想法到产品的实现路径</li>
-        <li><span>03</span>个人知识与内容工作流</li>
+        <li><span>01</span><strong>AI 编程与 Agent 工程</strong></li>
+        <li><span>02</span><strong>从想法到产品的实现路径</strong></li>
+        <li><span>03</span><strong>个人知识与内容工作流</strong></li>
       </ul>
     </aside>
   </section>
@@ -34,13 +38,13 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
   <section id="writing" class="writing page-shell" aria-labelledby="writing-title">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Selected writing</p>
-        <h2 id="writing-title">工程笔记精选</h2>
+        <p class="eyebrow">Latest writing</p>
+        <h2 id="writing-title">最新文章</h2>
       </div>
-      <span>2016—2022</span>
+      <a href="/posts/">查看全部 →</a>
     </div>
     <div class="post-grid">
-      {featuredPosts.map(({ data }) => (
+      {latestPosts.map(({ data }) => (
         <PostCard
           title={data.title}
           description={data.description}
@@ -56,36 +60,31 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
 <style>
   .hero {
     display: grid;
-    min-height: min(45rem, calc(100svh - 4.5rem));
-    padding-block: clamp(4rem, 10vw, 8rem);
-    align-items: center;
-    gap: clamp(3rem, 8vw, 7rem);
-    grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.7fr);
+    padding-block: clamp(4rem, 7vw, 6.5rem) clamp(3rem, 5vw, 4.5rem);
+    border-bottom: 1px solid var(--color-line);
+    align-items: end;
+    gap: clamp(3rem, 7vw, 6rem);
+    grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 0.6fr);
   }
 
   h1 {
-    max-width: 12ch;
+    max-width: 13ch;
     margin: 0;
-    font-size: clamp(3rem, 7.8vw, 6.6rem);
-    line-height: 1.04;
-    letter-spacing: -0.065em;
-  }
-
-  h1 span {
-    color: transparent;
-    -webkit-text-stroke: 1.5px var(--color-text);
+    font-size: clamp(3.25rem, 5vw, 5rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
   }
 
   .intro {
-    max-width: 42rem;
-    margin: 2rem 0 0;
+    max-width: 38rem;
+    margin: 1.5rem 0 0;
     color: var(--color-muted);
-    font-size: clamp(1rem, 2vw, 1.18rem);
+    font-size: clamp(1rem, 1.7vw, 1.12rem);
   }
 
   .hero-actions {
     display: flex;
-    margin-top: 2rem;
+    margin-top: 1.75rem;
     flex-wrap: wrap;
     gap: 0.8rem;
   }
@@ -114,20 +113,22 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
 
   .secondary-action {
     border: 1px solid var(--color-line);
-    background: rgb(255 253 248 / 65%);
+    background: color-mix(in srgb, var(--color-surface) 65%, transparent);
   }
 
   .focus-card {
-    padding: 1.4rem;
-    border: 1px solid rgb(7 94 229 / 25%);
+    padding: 1.3rem 1.4rem 0.35rem;
+    border: 1px solid var(--color-line);
+    border-top: 0.2rem solid var(--color-accent);
     border-radius: var(--radius-md);
-    background: rgb(255 253 248 / 72%);
-    box-shadow: var(--shadow-soft);
-    transform: rotate(1.5deg);
+    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
   }
 
-  .focus-card > p {
-    margin: 0 0 1rem;
+  .focus-kicker {
+    display: flex;
+    margin-bottom: 0.45rem;
+    align-items: center;
+    justify-content: space-between;
     color: var(--color-accent);
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -135,22 +136,26 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
     letter-spacing: 0.1em;
   }
 
+  .focus-card h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+
   .focus-card ul {
     display: grid;
     margin: 0;
     padding: 0;
     list-style: none;
-    gap: 0.2rem;
   }
 
   .focus-card li {
     display: grid;
-    padding-block: 0.85rem;
+    padding-block: 0.8rem;
     border-top: 1px solid var(--color-line);
-    font-size: 0.9rem;
-    font-weight: 650;
-    gap: 0.8rem;
-    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 0.65rem;
+    grid-template-columns: 1.6rem 1fr;
   }
 
   .focus-card li span {
@@ -159,14 +164,13 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
     font-size: 0.7rem;
   }
 
-  .writing {
-    padding-block: clamp(3rem, 8vw, 6rem);
+  .focus-card li strong {
+    font-size: 0.88rem;
+    font-weight: 650;
   }
 
-  .section-heading > span {
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+  .writing {
+    padding-block: clamp(3rem, 6vw, 5rem);
   }
 
   .post-grid {
@@ -177,13 +181,13 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
 
   @media (max-width: 52rem) {
     .hero {
-      min-height: auto;
+      padding-block: 3.5rem;
       grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
 
     .focus-card {
       max-width: 31rem;
-      transform: none;
     }
 
     .post-grid {
@@ -192,11 +196,6 @@ const featuredPosts = posts.filter(({ data }) => data.featured).slice(0, 3);
   }
 
   @media (max-width: 32rem) {
-    h1 span {
-      color: var(--color-text);
-      -webkit-text-stroke: 0;
-    }
-
     .section-heading {
       align-items: flex-start;
       flex-direction: column;

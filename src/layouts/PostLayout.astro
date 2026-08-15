@@ -71,21 +71,23 @@ const jsonLd = {
       )}
     </header>
 
-    {toc.length >= 3 && (
-      <nav class="toc content-shell surface" aria-label="文章目录">
-        <p>目录</p>
-        <ol>
-          {toc.map((heading) => (
-            <li class:list={{ nested: heading.depth === 3 }}>
-              <a href={`#${heading.slug}`}>{heading.text}</a>
-            </li>
-          ))}
-        </ol>
-      </nav>
-    )}
+    <div class:list={['post-body', { 'has-toc': toc.length >= 3 }]}>
+      {toc.length >= 3 && (
+        <nav class="toc surface" aria-label="文章目录">
+          <p>目录</p>
+          <ol>
+            {toc.map((heading) => (
+              <li class:list={{ nested: heading.depth === 3 }}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
 
-    <div class="post-content content-shell">
-      <slot />
+      <div class="post-content">
+        <slot />
+      </div>
     </div>
 
     <footer class="post-footer content-shell">
@@ -138,7 +140,22 @@ const jsonLd = {
     font-size: 0.86rem;
   }
 
+  .post-body {
+    width: min(calc(100% - 2rem), var(--reading-width));
+    margin-inline: auto;
+  }
+
+  .post-body.has-toc {
+    display: grid;
+    grid-template-areas:
+      'toc'
+      'content';
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
   .toc {
+    grid-area: toc;
     margin-top: 2.5rem;
     padding: 1rem 1.2rem;
   }
@@ -167,6 +184,8 @@ const jsonLd = {
   }
 
   .post-content {
+    grid-area: content;
+    min-width: 0;
     padding-top: 3rem;
     font-size: clamp(1rem, 1.6vw, 1.08rem);
   }
@@ -238,5 +257,22 @@ const jsonLd = {
     color: var(--color-accent);
     font-weight: 700;
     text-decoration: none;
+  }
+
+  @media (min-width: 80rem) {
+    .post-body.has-toc {
+      width: min(calc(100% - 2rem), calc(var(--reading-width) + 32rem));
+      grid-template-areas: '. content toc';
+      grid-template-columns: 14rem minmax(0, var(--reading-width)) 14rem;
+      column-gap: 2rem;
+    }
+
+    .toc {
+      position: sticky;
+      top: 1.5rem;
+      max-height: calc(100vh - 3rem);
+      margin-top: 3rem;
+      overflow-y: auto;
+    }
   }
 </style>
