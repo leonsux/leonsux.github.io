@@ -131,3 +131,4 @@
 - 2026-08-15：本地文章路由返回完整正文与目录，两张 SVG 均成功加载为 1200×675，页面在 809px 视口无横向溢出。
 - 2026-08-16：以原创 SVG 重连序列图替代真实截图待办，完整展示 `Reconnecting…1/5` 至 `Reconnecting…5/5`；Astro 检查维持 0 errors、0 warnings、0 hints，共构建 37 个页面，34 个历史及迁移地址全部通过，文章与新 SVG 在 4321 端口均返回 HTTP 200。
 - 2026-08-16：首页再次精简后，Astro 检查维持 0 errors、0 warnings、0 hints，共构建 37 个页面，34 个历史及迁移地址全部通过；在 1280×720 视口确认 Hero 按钮已移除、`Try EveryThing` 单行显示、顶栏 GitHub 外链存在且页面无横向溢出。
+- 2026-08-16：提交 `73b1ebc` 已推送至远端 `main`，GitHub Pages 第 4 次部署成功；线上首页与 Codex 代理排障文章均返回 HTTP 200，新标语、GitHub 顶栏入口和重连 SVG 已生效。
