@@ -12,14 +12,10 @@ const latestPosts = posts.slice(0, 3);
   <section class="hero page-shell">
     <div class="hero-copy">
       <p class="eyebrow">Full-stack engineer · AI builder</p>
-      <h1>把技术讲清楚，<br />把产品做出来。</h1>
+      <h1>Try EveryThing</h1>
       <p class="intro">
         我是 leonsux，全栈开发工程师与 AI 产品实践者。这里记录 AI 编程、产品构建与知识工作的真实方法。
       </p>
-      <div class="hero-actions">
-        <a class="primary-action" href="#writing">阅读文章</a>
-        <a class="secondary-action" href="https://github.com/leonsux" target="_blank" rel="noreferrer">查看 GitHub</a>
-      </div>
     </div>
     <aside class="focus-card" aria-labelledby="focus-title">
       <div class="focus-kicker">
@@ -68,11 +64,10 @@ const latestPosts = posts.slice(0, 3);
   }
 
   h1 {
-    max-width: 13ch;
     margin: 0;
     font-size: clamp(3.25rem, 5vw, 5rem);
     line-height: 1.08;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.045em;
   }
 
   .intro {
@@ -80,40 +75,6 @@ const latestPosts = posts.slice(0, 3);
     margin: 1.5rem 0 0;
     color: var(--color-muted);
     font-size: clamp(1rem, 1.7vw, 1.12rem);
-  }
-
-  .hero-actions {
-    display: flex;
-    margin-top: 1.75rem;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-  }
-
-  .hero-actions a {
-    display: inline-flex;
-    min-height: 2.9rem;
-    padding: 0.65rem 1.05rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    font-weight: 750;
-    text-decoration: none;
-  }
-
-  .primary-action {
-    color: white;
-    background: var(--color-accent);
-  }
-
-  .primary-action:hover {
-    color: white;
-    background: var(--color-accent-strong);
-  }
-
-  .secondary-action {
-    border: 1px solid var(--color-line);
-    background: color-mix(in srgb, var(--color-surface) 65%, transparent);
   }
 
   .focus-card {
