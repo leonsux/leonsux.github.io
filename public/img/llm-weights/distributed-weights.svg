@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">知识分散在许多权重之间</title>
+  <desc id="desc">输入问题经过由语法、语境、概念和事实关联等组成的权重网络，共同形成最终回答，没有一个权重单独保存完整知识。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#202733" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1262e8"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="675" rx="32" fill="#f7f3eb"/>
+  <circle cx="1120" cy="610" r="185" fill="#1262e8" opacity="0.05"/>
+  <circle cx="78" cy="55" r="135" fill="#1262e8" opacity="0.04"/>
+
+  <text x="70" y="69" fill="#1262e8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" letter-spacing="3">DISTRIBUTED KNOWLEDGE</text>
+  <text x="70" y="125" fill="#1e252f" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="42" font-weight="760">知识不是一条记录，而是一张关系网</text>
+  <text x="70" y="165" fill="#677180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="20">许多权重共同参与计算，才形成一次回答</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="230" width="220" height="308" rx="28" fill="#202733"/>
+    <rect x="360" y="204" width="480" height="360" rx="32" fill="#fffdf8" stroke="#d7dbe2" stroke-width="2"/>
+    <rect x="910" y="230" width="220" height="308" rx="28" fill="#1262e8"/>
+  </g>
+
+  <text x="104" y="274" fill="#91b6ff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="2">INPUT</text>
+  <text x="104" y="329" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="25" font-weight="740">法国的首都</text>
+  <text x="104" y="366" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="25" font-weight="740">是哪里？</text>
+  <path d="M 104 400 H 256" stroke="#465160" stroke-width="2"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">
+    <rect x="104" y="430" width="48" height="31" rx="9" fill="#303b49"/><text x="128" y="451" text-anchor="middle" fill="#dbe8ff">法国</text>
+    <rect x="160" y="430" width="34" height="31" rx="9" fill="#303b49"/><text x="177" y="451" text-anchor="middle" fill="#dbe8ff">的</text>
+    <rect x="202" y="430" width="54" height="31" rx="9" fill="#303b49"/><text x="229" y="451" text-anchor="middle" fill="#dbe8ff">首都</text>
+  </g>
+  <text x="104" y="500" fill="#aeb8c7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="15">文字先变成 token</text>
+
+  <path d="M 304 384 H 342" stroke="#1262e8" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M 854 384 H 892" stroke="#1262e8" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <text x="394" y="245" fill="#677180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="2">WEIGHT NETWORK</text>
+
+  <g stroke="#a9c5f6" stroke-width="2.5" opacity="0.75">
+    <path d="M 444 315 L 568 274 L 690 318 L 760 401 L 678 490 L 548 505 L 430 436 Z" fill="none"/>
+    <path d="M 444 315 L 548 505 M 568 274 L 678 490 M 690 318 L 430 436 M 760 401 L 444 315 M 568 274 L 760 401 M 690 318 L 548 505"/>
+    <path d="M 516 384 L 568 274 M 516 384 L 690 318 M 516 384 L 678 490 M 516 384 L 430 436 M 516 384 L 760 401"/>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" font-weight="700" text-anchor="middle">
+    <circle cx="568" cy="274" r="39" fill="#202733"/><text x="568" y="280" fill="#ffffff">词义</text>
+    <circle cx="690" cy="318" r="39" fill="#1262e8"/><text x="690" y="324" fill="#ffffff">语境</text>
+    <circle cx="760" cy="401" r="39" fill="#202733"/><text x="760" y="407" fill="#ffffff">语法</text>
+    <circle cx="678" cy="490" r="39" fill="#1262e8"/><text x="678" y="496" fill="#ffffff">概念</text>
+    <circle cx="548" cy="505" r="39" fill="#202733"/><text x="548" y="511" fill="#ffffff">表达</text>
+    <circle cx="430" cy="436" r="39" fill="#1262e8"/><text x="430" y="442" fill="#ffffff">事实</text>
+    <circle cx="444" cy="315" r="39" fill="#202733"/><text x="444" y="321" fill="#ffffff">关联</text>
+    <circle cx="516" cy="384" r="45" fill="#fffdf8" stroke="#1262e8" stroke-width="4"/><text x="516" y="390" fill="#1262e8">权重</text>
+  </g>
+
+  <text x="600" y="607" text-anchor="middle" fill="#677180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="15">没有一个节点单独保存完整答案</text>
+
+  <text x="944" y="274" fill="#dbe8ff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="2">OUTPUT</text>
+  <text x="944" y="350" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="31" font-weight="760">巴黎</text>
+  <path d="M 944 379 H 1096" stroke="#75a6ff" stroke-width="2"/>
+  <text x="944" y="416" fill="#dbe8ff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16">模型综合许多关系，</text>
+  <text x="944" y="444" fill="#dbe8ff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16">逐步生成最终回答。</text>
+  <rect x="944" y="478" width="152" height="34" rx="17" fill="#397bea"/>
+  <text x="1020" y="501" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700">NEXT TOKEN</text>
+</svg>

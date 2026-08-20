@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">大模型的训练与推理</title>
+  <desc id="desc">训练阶段通过预测、比较和调整反复更新权重，推理阶段使用训练好的权重处理新输入并生成回答。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#202733" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1262e8"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b8795"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="675" rx="32" fill="#f7f3eb"/>
+  <circle cx="1127" cy="92" r="164" fill="#1262e8" opacity="0.06"/>
+
+  <text x="70" y="69" fill="#1262e8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" letter-spacing="3">TRAINING VS. INFERENCE</text>
+  <text x="70" y="125" fill="#1e252f" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="42" font-weight="760">模型先学习，再回答</text>
+  <text x="70" y="165" fill="#677180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="20">训练会调整权重，普通对话只使用已经学到的权重</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="210" width="1060" height="222" rx="28" fill="#fffdf8" stroke="#d7dbe2" stroke-width="2"/>
+    <rect x="70" y="474" width="1060" height="132" rx="28" fill="#202733"/>
+  </g>
+
+  <rect x="92" y="230" width="92" height="30" rx="15" fill="#e7edf7"/>
+  <text x="138" y="251" text-anchor="middle" fill="#1262e8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">TRAINING</text>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif">
+    <rect x="110" y="288" width="172" height="92" rx="20" fill="#eef2f7"/>
+    <text x="196" y="326" text-anchor="middle" fill="#1e252f" font-size="21" font-weight="720">训练文本</text>
+    <text x="196" y="355" text-anchor="middle" fill="#677180" font-size="15">许多语言例子</text>
+
+    <rect x="344" y="288" width="172" height="92" rx="20" fill="#eef2f7"/>
+    <text x="430" y="326" text-anchor="middle" fill="#1e252f" font-size="21" font-weight="720">预测下文</text>
+    <text x="430" y="355" text-anchor="middle" fill="#677180" font-size="15">下一个 token</text>
+
+    <rect x="578" y="288" width="172" height="92" rx="20" fill="#fff1df" stroke="#e5a957" stroke-width="2"/>
+    <text x="664" y="326" text-anchor="middle" fill="#1e252f" font-size="21" font-weight="720">比较误差</text>
+    <text x="664" y="355" text-anchor="middle" fill="#9c6b2d" font-size="15">离原文有多远</text>
+
+    <rect x="812" y="276" width="270" height="116" rx="22" fill="#1262e8"/>
+    <text x="947" y="317" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="740">调整模型权重</text>
+    <text x="947" y="349" text-anchor="middle" fill="#dbe8ff" font-size="16">每次只改变一点点</text>
+    <text x="947" y="375" text-anchor="middle" fill="#dbe8ff" font-size="14">不断重复，逐渐学会规律</text>
+  </g>
+
+  <path d="M 288 334 H 326" stroke="#7b8795" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <path d="M 522 334 H 560" stroke="#7b8795" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-gray)"/>
+  <path d="M 756 334 H 794" stroke="#1262e8" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+  <path d="M 1012 276 C 1012 242, 430 242, 430 276" fill="none" stroke="#1262e8" stroke-width="3" stroke-dasharray="7 8" marker-end="url(#arrow-blue)"/>
+
+  <rect x="92" y="494" width="98" height="30" rx="15" fill="#33445e"/>
+  <text x="141" y="515" text-anchor="middle" fill="#91b6ff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700">INFERENCE</text>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif">
+    <text x="244" y="559" text-anchor="middle" fill="#ffffff" font-size="21" font-weight="720">你的新问题</text>
+    <text x="244" y="582" text-anchor="middle" fill="#aeb8c7" font-size="14">输入</text>
+    <rect x="392" y="509" width="302" height="76" rx="20" fill="#2e3846" stroke="#536274" stroke-width="2"/>
+    <text x="543" y="541" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="720">训练好的模型权重</text>
+    <text x="543" y="568" text-anchor="middle" fill="#91b6ff" font-size="14">通常不会因这次对话而改变</text>
+    <rect x="838" y="509" width="208" height="76" rx="20" fill="#1262e8"/>
+    <text x="942" y="541" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="720">生成回答</text>
+    <text x="942" y="568" text-anchor="middle" fill="#dbe8ff" font-size="14">输出</text>
+  </g>
+  <path d="M 319 547 H 372" stroke="#91b6ff" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+  <path d="M 714 547 H 818" stroke="#91b6ff" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+</svg>
