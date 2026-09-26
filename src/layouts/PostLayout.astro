@@ -3,6 +3,8 @@ import BaseLayout from './BaseLayout.astro';
 import Comments from '../components/Comments.astro';
 import { site } from '../data/site';
 import { formatDate } from '../utils/posts';
+import { displayText } from '../utils/typography';
+import { shiftArticleHeadings } from '../utils/article-headings';
 
 interface Heading {
   depth: number;
@@ -31,7 +33,11 @@ const {
   headings = [],
   legacy = false,
 } = Astro.props;
-const toc = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const hasBodyTitle = headings.some(({ depth }) => depth === 1);
+const renderedBody = await Astro.slots.render('default');
+const body = hasBodyTitle ? shiftArticleHeadings(renderedBody) : renderedBody;
+const toc = headings.map(heading => ({ ...heading, depth: Math.min(6, heading.depth + (hasBodyTitle ? 1 : 0)) }))
+  .filter(({ depth }) => depth === 2 || depth === 3);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -42,7 +48,7 @@ const jsonLd = {
   mainEntityOfPage: new URL(permalink, site.url).toString(),
   author: {
     '@type': 'Person',
-    name: 'leonsux',
+    name: site.title,
     url: site.url,
   },
 };
@@ -60,8 +66,8 @@ const jsonLd = {
   <article class="post-shell">
     <header class="post-header content-shell">
       <p class="eyebrow">Engineering note</p>
-      <h1>{title}</h1>
-      <p class="post-description">{description}</p>
+      <h1>{displayText(title)}</h1>
+      <p class="post-description">{displayText(description)}</p>
       <div class="post-meta">
         <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
         {tags.map((tag) => <a href={`/tags/#${encodeURIComponent(tag)}`}>#{tag}</a>)}
@@ -85,9 +91,7 @@ const jsonLd = {
         </nav>
       )}
 
-      <div class="post-content">
-        <slot />
-      </div>
+      <div class="post-content" set:html={body} />
     </div>
 
     <footer class="post-footer content-shell">
@@ -100,18 +104,26 @@ const jsonLd = {
 
 <style>
   .post-shell {
-    padding-block: clamp(4rem, 9vw, 7rem);
+    padding-block: clamp(3rem, 6vw, 5rem) 4rem;
+  }
+
+  .post-header {
+    padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    border-bottom: 1px solid var(--color-line);
   }
 
   .post-header h1 {
+    max-width: 100%;
     margin: 0;
-    font-size: clamp(2.4rem, 6.5vw, 4.8rem);
-    line-height: 1.08;
-    letter-spacing: -0.055em;
+    font-family: var(--font-display);
+    font-size: clamp(2.35rem, 4.6vw, 3.55rem);
+    line-height: 1.3;
+    letter-spacing: -0.052em;
   }
 
   .post-description {
-    margin: 1.4rem 0 0;
+    max-width: 54rem;
+    margin: 1.3rem 0 0;
     color: var(--color-muted);
     font-size: clamp(1rem, 2vw, 1.14rem);
   }
@@ -156,8 +168,8 @@ const jsonLd = {
 
   .toc {
     grid-area: toc;
-    margin-top: 2.5rem;
-    padding: 1rem 1.2rem;
+    margin-top: 2rem;
+    padding: 1.1rem 1.25rem;
   }
 
   .toc p {
@@ -171,7 +183,7 @@ const jsonLd = {
   }
 
   .toc li {
-    padding-block: 0.15rem;
+    padding-block: 0.18rem;
   }
 
   .toc li.nested {
@@ -181,13 +193,19 @@ const jsonLd = {
   .toc a {
     color: var(--color-muted);
     font-size: 0.88rem;
+    text-decoration-color: var(--color-line-strong);
+  }
+
+  .toc a:hover {
+    color: var(--color-accent);
   }
 
   .post-content {
     grid-area: content;
     min-width: 0;
-    padding-top: 3rem;
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
     font-size: clamp(1rem, 1.6vw, 1.08rem);
+    line-height: 1.82;
   }
 
   .post-content :global(h2),
@@ -199,12 +217,14 @@ const jsonLd = {
   }
 
   .post-content :global(h2) {
-    margin: 3rem 0 1rem;
+    margin: 3.3rem 0 1rem;
+    font-family: var(--font-display);
     font-size: clamp(1.65rem, 4vw, 2.15rem);
   }
 
   .post-content :global(h3) {
     margin: 2.3rem 0 0.8rem;
+    font-family: var(--font-display);
     font-size: clamp(1.3rem, 3vw, 1.65rem);
   }
 
@@ -212,7 +232,7 @@ const jsonLd = {
   .post-content :global(ul),
   .post-content :global(ol),
   .post-content :global(blockquote) {
-    margin-block: 1.2rem;
+    margin-block: 1.3rem;
   }
 
   .post-content :global(blockquote) {
@@ -228,9 +248,9 @@ const jsonLd = {
   }
 
   .post-content :global(img) {
-    margin-block: 1.75rem;
+    margin-block: 2rem;
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
   }
 
   .post-content :global(table) {
@@ -248,7 +268,7 @@ const jsonLd = {
   }
 
   .post-footer {
-    margin-top: 4rem;
+    margin-top: clamp(3.5rem, 7vw, 5rem);
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-line);
   }
@@ -269,10 +289,28 @@ const jsonLd = {
 
     .toc {
       position: sticky;
-      top: 1.5rem;
-      max-height: calc(100vh - 3rem);
-      margin-top: 3rem;
+      top: 2rem;
+      max-height: calc(100vh - 4rem);
+      margin-top: 3.5rem;
       overflow-y: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .post-header {
+      opacity: 0;
+      animation: post-enter 560ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes post-enter {
+      from {
+        opacity: 0;
+        transform: translateY(0.65rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 </style>

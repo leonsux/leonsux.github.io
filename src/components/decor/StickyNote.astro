@@ -1,0 +1,16 @@
+---
+interface Props { class?: string; }
+const { class: className } = Astro.props;
+---
+<div class:list={['sticky-note', className]}><slot /></div>
+<style>
+.sticky-note {
+  padding: var(--space-4);
+  background: var(--color-note);
+  color: var(--color-note-ink);
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-hand);
+  line-height: 1.45;
+  transform: rotate(-3deg);
+}
+</style>

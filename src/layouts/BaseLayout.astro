@@ -35,7 +35,7 @@ const defaultJsonLd = {
   description: site.description,
   author: {
     '@type': 'Person',
-    name: 'leonsux',
+  name: site.title,
     url: site.url,
     sameAs: [site.github, site.juejin],
   },
@@ -49,7 +49,16 @@ const defaultJsonLd = {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f7f5f0" />
+    <meta name="theme-color" content="#f3eee4" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        const saved = localStorage.getItem('leon-theme');
+        const theme = saved === 'dark' || saved === 'light' ? saved : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#1b231e' : '#f3eee4';
+      } catch {}
+    </script>
     {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" type="application/rss+xml" title={`${site.title} RSS`} href="/feed.xml" />
@@ -60,9 +69,14 @@ const defaultJsonLd = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL('/images/garden/og-cover.jpg', site.url)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Leonsux · Try EveryThing." />
     {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
     {updatedAt && <meta property="article:modified_time" content={updatedAt.toISOString()} />}
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL('/images/garden/og-cover.jpg', site.url)} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd ?? defaultJsonLd)} />
@@ -71,11 +85,16 @@ const defaultJsonLd = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到正文</a>
+    <div class="site-frame">
     <SiteHeader />
     <main id="main-content">
       <slot />
     </main>
     <SiteFooter />
+    </div>
+    <script>
+      import '../scripts/site';
+    </script>
     <script is:inline>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then((registrations) => {
@@ -93,9 +112,9 @@ const defaultJsonLd = {
     top: 0.75rem;
     left: 0.75rem;
     padding: 0.55rem 0.8rem;
-    border-radius: 0.35rem;
-    color: white;
-    background: var(--color-accent);
+    border-radius: var(--radius-sm);
+    color: #fff;
+    background: var(--color-accent-strong);
     transform: translateY(-180%);
   }
 

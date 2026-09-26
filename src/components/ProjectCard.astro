@@ -1,0 +1,82 @@
+---
+import type { Project } from '../data/projects';
+import { displayText } from '../utils/typography';
+interface Props { project: Project; }
+const { project } = Astro.props;
+---
+<article class="project-card" data-tilt>
+  <div class="project-cover"><img src={project.cover} alt={`${project.title} 项目视觉`} width="640" height="400" loading="lazy" decoding="async" /></div>
+  <div class="project-body">
+    <div class="project-meta"><span>{project.tags.join(' / ')}</span>{project.status === 'archive' && <span>历史项目</span>}{project.date && <time datetime={project.date}>{project.date}</time>}</div>
+    <h3>{displayText(project.title)}</h3><p>{displayText(project.description)}</p>
+    <div class="project-links">{project.url && <a class="hover-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`体验项目：${project.title}`}>体验项目 <span aria-hidden="true">↗</span></a>}{project.github && <a class="hover-arrow" href={project.github} target="_blank" rel="noreferrer" aria-label={`GitHub 仓库：${project.title}`}>GitHub <span aria-hidden="true">↗</span></a>}</div>
+  </div>
+</article>
+<style>
+.project-card {
+  min-width: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base);
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+}
+.project-card:hover {
+  box-shadow: var(--shadow-paper);
+}
+.project-cover {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-collage);
+}
+.project-cover img {
+  width: 100%;
+  aspect-ratio: 1.6;
+  object-fit: cover;
+  transition: transform var(--duration-base);
+}
+.project-card:hover img {
+  transform: scale(1.025);
+}
+.project-body {
+  padding: 1.5rem;
+}
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--color-muted);
+  font: 0.65rem/1.6 var(--font-mono);
+}
+h3 {
+  font: 500 1.75rem/1.2 var(--font-display);
+  margin: 0.65rem 0 0.8rem;
+  overflow-wrap: anywhere;
+}
+p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin: 0 0 1.5rem;
+  min-height: 4.5em;
+}
+.project-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+}
+.project-links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  padding-block: 0.3rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card:hover img {
+    transform: none;
+  }
+}
+</style>

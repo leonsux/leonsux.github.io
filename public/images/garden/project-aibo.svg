@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+<rect width="640" height="400" fill="#cbd6c0"/><circle cx="510" cy="70" r="170" fill="#bdcbb2"/>
+<g fill="none" stroke="#486646" stroke-width="1" opacity=".2"><path d="M0 80H640M0 160H640M0 240H640M0 320H640M80 0V400M160 0V400M240 0V400M320 0V400M400 0V400M480 0V400M560 0V400"/></g>
+<g transform="translate(175 110) rotate(-7 145 85)"><rect x="6" y="12" width="290" height="174" rx="60" fill="#1f3c2d" opacity=".15"/><rect width="290" height="174" rx="60" fill="#f4efd9" stroke="#234b38" stroke-width="3"/><path d="M63 54V120M30 87H96" stroke="#315a42" stroke-width="17" stroke-linecap="round"/><circle cx="223" cy="62" r="12" fill="#c9643c"/><circle cx="249" cy="87" r="12" fill="#dfac5c"/><circle cx="196" cy="88" r="12" fill="#7f9d72"/><circle cx="223" cy="114" r="12" fill="#315a42"/><path d="M132 103Q148 122 163 102" fill="none" stroke="#315a42" stroke-width="3" stroke-linecap="round"/></g>
+<path d="M431 67Q473 31 500 73M463 91Q488 69 512 95" fill="none" stroke="#c9643c" stroke-width="4" stroke-linecap="round"/>
+<text x="35" y="47" font-family="Georgia,serif" font-size="24" fill="#234b38">a little company.</text><text x="35" y="366" font-family="monospace" font-size="12" letter-spacing="3" fill="#315a42">AIBO / PLAY TOGETHER</text></svg>

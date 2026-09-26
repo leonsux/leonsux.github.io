@@ -1,0 +1,83 @@
+---
+import { profile } from '../data/profile';
+import { site } from '../data/site';
+import Doodle from './decor/Doodle.astro';
+interface Props { full?: boolean; }
+const { full = false } = Astro.props;
+---
+<div class="about-section">
+  <div class="about-art" aria-hidden="true"><span class="handwritten">a work in progress</span><div class="monogram">L<span>✳</span></div><Doodle kind="mountain" /><p>Code. Create. Be curious.</p></div>
+  <div class="about-copy"><p class="handwritten">a little about me</p><h2>屏幕之外，<br />也有很多好奇。</h2>{profile.about.map(text => <p>{text}</p>)}{full && <p>{profile.beyond}</p>}
+    <div class="about-links">{!full && <a class="hover-arrow" href="/about/">认识我更多 <span aria-hidden="true">↗</span></a>}<a href={site.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={`mailto:${site.email}`}>Email ↗</a>{full && <a href={site.juejin} target="_blank" rel="noreferrer">掘金 ↗</a>}</div>
+  </div>
+</div>
+<style>
+.about-section {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+.about-art {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding: 3rem 2rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50% 50% 0.5rem 0.5rem;
+  max-width: 24rem;
+  width: 100%;
+  margin-inline: auto;
+  background: var(--color-surface);
+  transform: rotate(-3deg);
+}
+.about-art .handwritten {
+  font-size: 1rem;
+}
+.monogram {
+  position: relative;
+  font: italic 10rem/1.2 var(--font-display);
+  color: var(--color-accent);
+}
+.monogram span {
+  position: absolute;
+  font-size: 3rem;
+  color: var(--color-orange);
+  top: 1rem;
+  right: -2rem;
+}
+.about-art :global(svg) {
+  width: 7rem;
+  height: 3rem;
+  color: var(--color-accent);
+}
+.about-art > p {
+  font: 0.7rem var(--font-mono);
+  margin-bottom: 0;
+}
+h2 {
+  font: 500 clamp(2rem, 3vw, 2.8rem)/1.4 var(--font-display);
+  margin: 0.5rem 0 1.5rem;
+}
+.about-copy > p:not(.handwritten) {
+  color: var(--color-muted);
+  font-size: 0.93rem;
+  max-width: 45ch;
+}
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.83rem;
+}
+@media (max-width: 48rem) {
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+  .about-art {
+    max-width: 19rem;
+    padding-block: 2rem;
+  }
+}
+</style>

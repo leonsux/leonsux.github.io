@@ -1,165 +1,48 @@
 ---
 import { getCollection } from 'astro:content';
-import PostCard from '../components/PostCard.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
-const latestPosts = posts.slice(0, 3);
+import Hero from '../components/Hero.astro';
+import PaperSection from '../components/decor/PaperSection.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import PostCard from '../components/PostCard.astro';
+import NowCard from '../components/NowCard.astro';
+import AboutSection from '../components/AboutSection.astro';
+import { sortPosts } from '../utils/posts';
+const latestPosts = sortPosts(await getCollection('blog', ({ data }) => !data.draft)).slice(0,3);
 ---
-
-<BaseLayout>
-  <section class="hero page-shell">
-    <div class="hero-copy">
-      <p class="eyebrow">Full-stack engineer · AI builder</p>
-      <h1>Try EveryThing</h1>
-      <p class="intro">
-        我是 leonsux，全栈开发工程师与 AI 产品实践者。这里记录 AI 编程、产品构建与知识工作的真实方法。
-      </p>
-    </div>
-    <aside class="focus-card" aria-labelledby="focus-title">
-      <div class="focus-kicker">
-        <span>NOW</span>
-        <span>2026</span>
-      </div>
-      <h2 id="focus-title">正在关注</h2>
-      <ul>
-        <li><span>01</span><strong>AI 编程与 Agent 工程</strong></li>
-        <li><span>02</span><strong>从想法到产品的实现路径</strong></li>
-        <li><span>03</span><strong>个人知识与内容工作流</strong></li>
-      </ul>
-    </aside>
-  </section>
-
-  <section id="writing" class="writing page-shell" aria-labelledby="writing-title">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Latest writing</p>
-        <h2 id="writing-title">最新文章</h2>
-      </div>
-      <a href="/posts/">查看全部 →</a>
-    </div>
-    <div class="post-grid">
-      {latestPosts.map(({ data }) => (
-        <PostCard
-          title={data.title}
-          description={data.description}
-          href={data.permalink}
-          publishedAt={data.publishedAt}
-          tags={data.tags}
-        />
-      ))}
-    </div>
-  </section>
+<BaseLayout title="Leonsux · Try EveryThing">
+  <Hero />
+  <PaperSection id="projects" label="精选项目"><SectionHeading title="Featured projects" note="things I've been building" description="把一些想法，做成可以使用、体验和继续生长的东西。" href="/projects/" linkText="所有项目" /><ProjectGrid featured /></PaperSection>
+  <PaperSection id="writing" tone="forest" torn label="文章与近况">
+    <div class="writing-grid"><div><SectionHeading title="Writing & thoughts" note="notes from the journey" href="/posts/" linkText="所有文章" />{latestPosts.map(({data}) => <PostCard title={data.title} description={data.description} href={data.permalink} publishedAt={data.publishedAt} tags={data.tags} />)}</div><div class="now-wrap" id="now"><NowCard /></div></div>
+  </PaperSection>
+  <PaperSection id="about" tone="sage" label="关于作者"><AboutSection /></PaperSection>
 </BaseLayout>
-
 <style>
-  .hero {
-    display: grid;
-    padding-block: clamp(4rem, 7vw, 6.5rem) clamp(3rem, 5vw, 4.5rem);
-    border-bottom: 1px solid var(--color-line);
-    align-items: end;
-    gap: clamp(3rem, 7vw, 6rem);
-    grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 0.6fr);
+.writing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.now-wrap {
+  padding-top: 2rem;
+}
+.writing-grid :global(.section-heading > a) {
+  color: var(--color-forest-muted);
+}
+.writing-grid :global(.section-heading .handwritten) {
+  color: #f5ba91;
+}
+@media (max-width: 64rem) {
+  .writing-grid {
+    grid-template-columns: 1fr;
   }
-
-  h1 {
-    margin: 0;
-    font-size: clamp(3.25rem, 5vw, 5rem);
-    line-height: 1.08;
-    letter-spacing: -0.045em;
+  .now-wrap {
+    max-width: 36rem;
+    width: 100%;
+    margin-inline: auto;
   }
-
-  .intro {
-    max-width: 38rem;
-    margin: 1.5rem 0 0;
-    color: var(--color-muted);
-    font-size: clamp(1rem, 1.7vw, 1.12rem);
-  }
-
-  .focus-card {
-    padding: 1.3rem 1.4rem 0.35rem;
-    border: 1px solid var(--color-line);
-    border-top: 0.2rem solid var(--color-accent);
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
-  }
-
-  .focus-kicker {
-    display: flex;
-    margin-bottom: 0.45rem;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--color-accent);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-  }
-
-  .focus-card h2 {
-    margin: 0 0 0.75rem;
-    font-size: 1.05rem;
-    letter-spacing: -0.02em;
-  }
-
-  .focus-card ul {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .focus-card li {
-    display: grid;
-    padding-block: 0.8rem;
-    border-top: 1px solid var(--color-line);
-    align-items: baseline;
-    gap: 0.65rem;
-    grid-template-columns: 1.6rem 1fr;
-  }
-
-  .focus-card li span {
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-  }
-
-  .focus-card li strong {
-    font-size: 0.88rem;
-    font-weight: 650;
-  }
-
-  .writing {
-    padding-block: clamp(3rem, 6vw, 5rem);
-  }
-
-  .post-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  @media (max-width: 52rem) {
-    .hero {
-      padding-block: 3.5rem;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    .focus-card {
-      max-width: 31rem;
-    }
-
-    .post-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 32rem) {
-    .section-heading {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-  }
+}
 </style>

@@ -14,11 +14,12 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
-    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
-    "build": "npm run check && ASTRO_TELEMETRY_DISABLED=1 astro build",
-    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-    "verify:urls": "node scripts/check-legacy-urls.mjs"
+    "dev": "node scripts/run-astro.mjs dev",
+    "check": "node scripts/run-astro.mjs check",
+    "build": "npm run check && node scripts/run-astro.mjs build",
+    "preview": "node scripts/run-astro.mjs preview",
+    "verify:urls": "node scripts/check-legacy-urls.mjs",
+    "verify:site": "node scripts/check-site.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "4.0.19",
