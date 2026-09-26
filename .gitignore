@@ -54,3 +54,6 @@ npm-debug.log*
 .codex/
 .claude/
 .agents/
+
+# Task-local backups and verification artifacts
+.tmp/

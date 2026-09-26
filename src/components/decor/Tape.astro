@@ -1,0 +1,26 @@
+<span class="tape" aria-hidden="true"></span>
+<style>
+.tape {
+  position: absolute;
+  z-index: var(--z-decor);
+  width: 5.5rem;
+  height: 1.65rem;
+  left: calc(50% - 2.75rem);
+  top: -0.7rem;
+  background: rgb(217 190 135 / 70%);
+  transform: rotate(-5deg);
+  clip-path: polygon(
+    2% 0,
+    98% 3%,
+    96% 20%,
+    100% 42%,
+    97% 65%,
+    100% 100%,
+    0 96%,
+    3% 74%,
+    0 53%,
+    3% 20%
+  );
+  pointer-events: none;
+}
+</style>

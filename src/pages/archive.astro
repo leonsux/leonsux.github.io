@@ -30,7 +30,7 @@ const years = Object.entries(Object.groupBy(posts, ({ data }) => String(data.pub
 
 <style>
   .archive {
-    padding-bottom: clamp(4rem, 10vw, 8rem);
+    padding-block: clamp(3rem, 6vw, 4.5rem) clamp(4rem, 10vw, 8rem);
   }
 
   section {
@@ -70,6 +70,10 @@ const years = Object.entries(Object.groupBy(posts, ({ data }) => String(data.pub
   li a {
     font-weight: 650;
     text-decoration: none;
+  }
+
+  li a:hover {
+    color: var(--color-accent);
   }
 
   @media (max-width: 38rem) {

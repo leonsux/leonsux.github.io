@@ -1,0 +1,23 @@
+---
+interface Props { kind?: 'arrow' | 'mountain' | 'underline'; class?: string; }
+const { kind = 'arrow', class: className } = Astro.props;
+---
+<svg class:list={['doodle', className]} viewBox="0 0 180 90" preserveAspectRatio={kind === 'underline' ? 'none' : 'xMidYMid meet'} fill="none" aria-hidden="true" focusable="false">
+  {kind === 'arrow' && <path d="M8 12C70 2 32 79 135 63M114 48L138 64L120 81" />}
+  {kind === 'mountain' && <><path d="M8 77L60 14L89 49L120 9L173 77M42 36L61 44L70 31M102 31L119 40L135 31" /><path d="M19 82C64 75 104 85 166 80" /></>}
+  {kind === 'underline' && <path d="M5 42C42 31 76 49 110 37S150 34 175 38M12 51C56 42 82 51 129 46" />}
+</svg>
+<style>
+.doodle {
+  display: block;
+  width: 9rem;
+  color: var(--color-orange);
+  pointer-events: none;
+}
+.doodle path {
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+</style>

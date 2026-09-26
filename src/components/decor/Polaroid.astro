@@ -1,0 +1,34 @@
+---
+import type { GardenImage } from '../../data/media';
+import Tape from './Tape.astro';
+interface Props { image: GardenImage; caption: string; eager?: boolean; class?: string; }
+const { image, caption, eager = false, class: className } = Astro.props;
+const srcset = image.small ? [`${image.small} 480w`, image.medium && `${image.medium} 640w`, `${image.src} 960w`].filter(Boolean).join(', ') : undefined;
+---
+<figure class:list={['polaroid', className]}>
+  <Tape />
+  <img src={image.src} srcset={srcset} sizes={image.small ? '(max-width: 640px) 70vw, (max-width: 1024px) 60vw, 34vw' : undefined} width={image.width} height={image.height} alt={image.alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" />
+  <figcaption>{caption}</figcaption>
+</figure>
+<style>
+.polaroid {
+  position: relative;
+  margin: 0;
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  background: var(--color-paper-edge);
+  box-shadow: var(--shadow-paper);
+  color: #343b30;
+}
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 1.16;
+  object-fit: cover;
+}
+.polaroid figcaption {
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  min-height: 2.5rem;
+  padding-top: var(--space-3);
+}
+</style>

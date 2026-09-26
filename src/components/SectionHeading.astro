@@ -1,0 +1,8 @@
+---
+interface Props { title: string; note?: string; description?: string; href?: string; linkText?: string; }
+const { title, note, description, href, linkText = '查看全部' } = Astro.props;
+---
+<div class="section-heading">
+  <div>{note && <p class="handwritten">{note}</p>}<h2>{title}</h2>{description && <p class="section-description">{description}</p>}</div>
+  {href && <a class="hover-arrow" href={href}>{linkText} <span aria-hidden="true">→</span></a>}
+</div>

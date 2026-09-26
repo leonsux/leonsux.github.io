@@ -1,0 +1,62 @@
+---
+interface Props { id?: string; tone?: 'paper' | 'forest' | 'sage'; torn?: boolean; label?: string; }
+const { id, tone = 'paper', torn = false, label } = Astro.props;
+---
+<section id={id} class:list={['paper-section', tone, { torn }]} aria-label={label}>
+  <div class="page-shell section-inner" data-reveal><slot /></div>
+</section>
+<style>
+.paper-section {
+  position: relative;
+  background: var(--color-surface);
+  padding-block: var(--section-space);
+}
+.forest {
+  background: var(--color-forest);
+  color: var(--color-forest-text);
+}
+.sage {
+  background: var(--color-about);
+}
+.section-inner {
+  position: relative;
+  z-index: var(--z-paper);
+}
+.torn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.75rem;
+  height: 0.8rem;
+  background: inherit;
+  clip-path: polygon(
+    0 40%,
+    3% 25%,
+    6% 60%,
+    10% 32%,
+    14% 55%,
+    18% 20%,
+    22% 48%,
+    27% 25%,
+    32% 62%,
+    37% 38%,
+    41% 59%,
+    46% 18%,
+    50% 46%,
+    54% 30%,
+    59% 56%,
+    64% 22%,
+    69% 48%,
+    74% 29%,
+    78% 57%,
+    83% 25%,
+    87% 44%,
+    92% 22%,
+    96% 54%,
+    100% 31%,
+    100% 100%,
+    0 100%
+  );
+}
+</style>

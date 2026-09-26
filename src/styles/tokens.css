@@ -1,0 +1,103 @@
+/* Breakpoints: 40rem phone, 48rem tablet, 64rem desktop, 80rem wide, 90rem large. */
+:root {
+  color-scheme: light;
+  --color-outside: #ddd6c9;
+  --color-canvas: #f3eee4;
+  --color-surface: #fbf7ef;
+  --color-surface-strong: #fffdf8;
+  --color-text: #20251f;
+  --color-muted: #566052;
+  --color-line: #d6d5c8;
+  --color-line-strong: #a3ac9c;
+  --color-accent: #235345;
+  --color-accent-strong: #173e32;
+  --color-accent-soft: #e2e9dc;
+  --color-orange: #ac461f;
+  --color-sticker: #ef8755;
+  --color-code: #e9e6dc;
+  --color-collage: #e5ddce;
+  --color-note: #f2dfb0;
+  --color-note-ink: #3c3522;
+  --color-paper-edge: #fffdf6;
+  --color-forest: #193d32;
+  --color-forest-text: #f5f1e6;
+  --color-forest-muted: #c6d3c8;
+  --color-about: #e4ebe4;
+  --color-button-text: #fffdf8;
+  --font-sans:
+    'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-display: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+  --font-mono: Consolas, 'SFMono-Regular', 'Liberation Mono', monospace;
+  --font-hand: 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --section-space: clamp(3rem, 5vw, 5rem);
+  --page-width: 75rem;
+  --reading-width: 70ch;
+  --radius-sm: 0.35rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+  --shadow-soft: 0 12px 32px rgb(51 42 28 / 9%);
+  --shadow-paper: 0 15px 30px rgb(51 42 28 / 16%);
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-reveal: 600ms;
+  --z-paper: 1;
+  --z-decor: 3;
+  --z-header: 20;
+  --z-cursor: 30;
+  --z-skip: 40;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-outside: #101613;
+  --color-canvas: #1b231e;
+  --color-surface: #252f28;
+  --color-surface-strong: #2c382f;
+  --color-text: #eef0e7;
+  --color-muted: #b8c2b6;
+  --color-line: #475447;
+  --color-line-strong: #71836e;
+  --color-accent: #b5d2b5;
+  --color-accent-strong: #d4e8c9;
+  --color-accent-soft: #303f33;
+  --color-orange: #ffb488;
+  --color-code: #111c16;
+  --color-collage: #2b352c;
+  --color-paper-edge: #dcd9ca;
+  --color-about: #24352e;
+  --color-button-text: #18281f;
+  --shadow-soft: 0 12px 32px rgb(0 0 0 / 15%);
+  --shadow-paper: 0 15px 30px rgb(0 0 0 / 25%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --color-outside: #101613;
+    --color-canvas: #1b231e;
+    --color-surface: #252f28;
+    --color-surface-strong: #2c382f;
+    --color-text: #eef0e7;
+    --color-muted: #b8c2b6;
+    --color-line: #475447;
+    --color-line-strong: #71836e;
+    --color-accent: #b5d2b5;
+    --color-accent-strong: #d4e8c9;
+    --color-accent-soft: #303f33;
+    --color-orange: #ffb488;
+    --color-code: #111c16;
+    --color-collage: #2b352c;
+    --color-paper-edge: #dcd9ca;
+    --color-about: #24352e;
+    --color-button-text: #18281f;
+  }
+}

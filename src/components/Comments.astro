@@ -5,24 +5,25 @@
     <p>评论由 GitHub Discussions 提供，需要使用 GitHub 账号参与。</p>
   </header>
   <div class="giscus"></div>
-  <script
-    is:inline
-    src="https://giscus.app/client.js"
-    data-repo="leonsux/leonsux.github.io"
-    data-repo-id="R_kgDOHNRIgA"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOHNRIgM4DDYVB"
-    data-mapping="pathname"
-    data-strict="1"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async
-  ></script>
+  <noscript><p>启用 JavaScript 后可加载评论，也可以前往 <a href="https://github.com/leonsux/leonsux.github.io/discussions">GitHub Discussions</a>。</p></noscript>
+  <script>
+    const target = document.querySelector('.giscus');
+    if (target) {
+      const client = document.createElement('script');
+      client.src = 'https://giscus.app/client.js';
+      client.async = true;
+      client.crossOrigin = 'anonymous';
+      const config = {
+        repo: 'leonsux/leonsux.github.io', 'repo-id': 'R_kgDOHNRIgA',
+        category: 'Announcements', 'category-id': 'DIC_kwDOHNRIgM4DDYVB',
+        mapping: 'pathname', strict: '1', 'reactions-enabled': '1', 'emit-metadata': '0',
+        'input-position': 'top', theme: document.documentElement.dataset.theme || 'preferred_color_scheme', lang: 'zh-CN', loading: 'lazy',
+      };
+      Object.entries(config).forEach(([key, value]) => client.setAttribute(`data-${key}`, value));
+      client.addEventListener('error', () => { target.textContent = '评论暂时无法加载，请稍后重试或前往 GitHub Discussions。'; });
+      target.after(client);
+    }
+  </script>
 </section>
 
 <style>
@@ -50,5 +51,19 @@
 
   .giscus {
     min-height: 8rem;
+  }
+
+  .giscus:empty {
+    display: grid;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    color: var(--color-muted);
+    background: var(--color-surface);
+    font-size: 0.84rem;
+    place-items: center;
+  }
+
+  .giscus:empty::before {
+    content: '评论加载中';
   }
 </style>

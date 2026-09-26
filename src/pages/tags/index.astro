@@ -42,23 +42,26 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].length - a[1].length || a
 
 <style>
   .tag-index {
-    padding-bottom: clamp(4rem, 10vw, 8rem);
+    padding-block: clamp(3rem, 6vw, 4.5rem) clamp(4rem, 10vw, 8rem);
   }
 
   .tag-cloud {
     display: flex;
-    padding-bottom: 2.5rem;
+    padding-bottom: 3.25rem;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.55rem 1.2rem;
   }
 
   .tag-cloud a {
-    padding: 0.45rem 0.7rem;
-    border: 1px solid var(--color-line);
-    border-radius: 999px;
+    padding-block: 0.25rem;
+    border-bottom: 1px solid var(--color-line-strong);
     color: var(--color-muted);
-    font-size: 0.83rem;
+    font-size: 0.88rem;
     text-decoration: none;
+  }
+
+  .tag-cloud a:hover {
+    border-color: var(--color-accent);
   }
 
   .tag-cloud sup {
@@ -68,22 +71,22 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].length - a[1].length || a
 
   .tag-groups {
     display: grid;
-    gap: 1rem;
+    gap: 0 3rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   section {
     scroll-margin-top: 1rem;
-    padding: 1.3rem;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    padding-block: 1.4rem 1.8rem;
+    border-top: 1px solid var(--color-line);
   }
 
   h2 {
-    margin: 0 0 0.8rem;
+    margin: 0 0 1rem;
     color: var(--color-accent);
-    font-size: 1.15rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: -0.025em;
   }
 
   ol {
@@ -94,10 +97,9 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].length - a[1].length || a
 
   li {
     display: flex;
-    padding-block: 0.45rem;
+    padding-block: 0.42rem;
     align-items: baseline;
     justify-content: space-between;
-    border-top: 1px solid var(--color-line);
     gap: 1rem;
   }
 

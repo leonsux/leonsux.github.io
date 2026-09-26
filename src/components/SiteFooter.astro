@@ -1,52 +1,48 @@
 ---
 import { site } from '../data/site';
 ---
-
 <footer>
   <div class="page-shell footer-inner">
-    <p>© {new Date().getFullYear()} {site.title}</p>
-    <div class="footer-links">
-      <a href="/archive/">归档</a>
-      <a href="/feed.xml">RSS</a>
-      <a href={`mailto:${site.email}`}>Email</a>
-      <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
-    </div>
+    <div><a class="signature" href="/">Leonsux ✳</a><p>Try EveryThing · 保持好奇，慢慢构建。</p><small>© {new Date().getFullYear()} Leonsux</small></div>
+    <div class="footer-links"><a href="/archive/">归档</a><a href="/tags/">标签</a><a href="/feed.xml">RSS</a><a href={site.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={site.juejin} target="_blank" rel="noreferrer">掘金 ↗</a><a href={`mailto:${site.email}`}>Email ↗</a></div>
   </div>
 </footer>
-
 <style>
-  footer {
-    margin-top: 5rem;
-    border-top: 1px solid var(--color-line);
-    color: var(--color-muted);
-    font-size: 0.85rem;
-  }
-
-  .footer-inner,
-  .footer-links {
-    display: flex;
-    align-items: center;
-  }
-
+footer {
+  border-top: 1px solid var(--color-line);
+  padding-block: 3rem;
+  font-size: 0.85rem;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+}
+.signature {
+  font: italic 1.65rem var(--font-display);
+  text-decoration: none;
+}
+p {
+  margin: 0.5rem 0 1rem;
+  color: var(--color-muted);
+}
+small {
+  color: var(--color-muted);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+.footer-links a {
+  text-decoration: none;
+  padding-block: 0.5rem;
+}
+@media (max-width: 48rem) {
   .footer-inner {
-    min-height: 6rem;
-    justify-content: space-between;
-    gap: 1rem;
+    align-items: start;
+    flex-direction: column;
   }
-
-  .footer-links {
-    gap: 1rem;
-  }
-
-  @media (max-width: 32rem) {
-    .footer-inner {
-      align-items: flex-start;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .footer-inner p {
-      margin: 0;
-    }
-  }
+}
 </style>

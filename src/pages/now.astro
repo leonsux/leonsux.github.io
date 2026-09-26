@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { now } from '../data/now';
+---
+<BaseLayout title="Now" description={now.intro}>
+  <PageIntro eyebrow="A living page" title="What I'm up to now." description={now.intro} />
+  <div class="content-shell now-page"><p class="updated">更新于 <time datetime={now.updatedAt}>{now.updatedAt}</time></p>{now.items.map((item,index) => <section><span class="number">0{index+1}</span><div><h2>{item.title}</h2><p>{item.description}</p></div></section>)}<p class="closing handwritten">One small step at a time.</p><a href="/about/">更多关于我 ↗</a></div>
+</BaseLayout>
+<style>
+.now-page {
+  padding-block: 3rem 5rem;
+}
+.updated {
+  color: var(--color-muted);
+  font: 0.8rem var(--font-mono);
+  margin-bottom: 2rem;
+}
+section {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1.3rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--color-line);
+}
+.number {
+  color: var(--color-orange);
+  font: 0.75rem var(--font-mono);
+  padding-top: 0.5rem;
+}
+h2 {
+  font: 500 1.6rem/1.5 var(--font-display);
+  margin: 0 0 0.5rem;
+}
+section p {
+  margin: 0;
+  color: var(--color-muted);
+}
+.closing {
+  margin-block: 2rem 1rem;
+}
+</style>

@@ -1,0 +1,70 @@
+---
+import { now } from '../data/now';
+import Tape from './decor/Tape.astro';
+---
+<aside class="now-card" aria-labelledby="now-title">
+  <Tape /><p class="handwritten">a little life update</p><h2 id="now-title">Now<span aria-hidden="true"> ↗</span></h2>
+  <p class="updated">更新于 <time datetime={now.updatedAt}>{now.updatedAt.replaceAll('-', '.')}</time></p>
+  <ul>{now.items.slice(0,3).map(item => <li><span aria-hidden="true">✳</span><div><strong>{item.title}</strong><p>{item.description}</p></div></li>)}</ul>
+  <a href="/now/" class="hover-arrow">最近在忙什么 <span aria-hidden="true">↗</span></a>
+</aside>
+<style>
+.now-card {
+  position: relative;
+  padding: 2.3rem 2rem 1.8rem;
+  color: var(--color-note-ink);
+  background: var(--color-note);
+  box-shadow: var(--shadow-paper);
+  transform: rotate(1.5deg);
+}
+.handwritten {
+  color: #854120;
+  font-size: 1rem;
+}
+h2 {
+  margin: 0.2rem 0;
+  font: italic 2.8rem/1.1 var(--font-display);
+}
+h2 span {
+  color: #714629;
+  font-size: 2rem;
+}
+.updated {
+  font: 0.65rem var(--font-mono);
+  color: #61543e;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+li {
+  display: flex;
+  gap: 0.8rem;
+  padding-block: 0.85rem;
+  border-top: 1px solid #a691663f;
+}
+li > span {
+  color: #755432;
+}
+strong {
+  font-size: 0.86rem;
+}
+li p {
+  font-size: 0.78rem;
+  margin: 0.3rem 0 0;
+  line-height: 1.75;
+  color: #61543e;
+}
+a {
+  color: #254b37;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+@media (max-width: 40rem) {
+  .now-card {
+    transform: none;
+    padding-inline: 1.5rem;
+  }
+}
+</style>

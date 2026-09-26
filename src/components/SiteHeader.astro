@@ -1,80 +1,111 @@
 ---
-import { site } from '../data/site';
+import { site, navigation } from '../data/site';
+const pathname = Astro.url.pathname;
 ---
-
 <header class="site-header">
   <div class="page-shell header-inner">
-    <a class="brand" href="/" aria-label="返回首页">
-      <span class="brand-mark" aria-hidden="true">L</span>
-      <span>{site.title}</span>
-    </a>
-    <nav aria-label="主导航">
-      <a href="/posts/">文章</a>
-      <a href="/projects/">项目</a>
-      <a href="/about/">关于</a>
-      <a class="github-link" href={site.github} target="_blank" rel="noreferrer">
-        GitHub <span aria-hidden="true">↗</span>
-      </a>
+    <a class="brand" href="/" aria-label="Leonsux，返回首页">Leonsux<span aria-hidden="true">✳</span></a>
+    <nav id="main-navigation" aria-label="主导航">
+      {navigation.map(link => <a href={link.href} aria-current={pathname.startsWith(link.href) ? 'page' : undefined}>{link.label}</a>)}
+      <a class="github-link" href={site.github} target="_blank" rel="noreferrer">GitHub ↗</a>
     </nav>
+    <div class="controls">
+      <button class="theme-toggle" type="button" aria-label="切换为深色模式" aria-pressed="false" hidden><span aria-hidden="true">◐</span></button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" hidden>菜单 <span aria-hidden="true">☰</span></button>
+    </div>
   </div>
 </header>
-
 <style>
-  .site-header {
-    border-bottom: 1px solid rgb(28 34 43 / 10%);
-  }
-
+.site-header {
+  position: relative;
+  z-index: var(--z-header);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-canvas);
+}
+.header-inner {
+  display: flex;
+  min-height: 5.25rem;
+  align-items: center;
+  gap: 2rem;
+}
+.brand {
+  margin-right: auto;
+  white-space: nowrap;
+  font: italic 700 1.65rem/1 var(--font-display);
+  letter-spacing: -0.055em;
+  text-decoration: none;
+}
+.brand span {
+  margin-left: 0.4rem;
+  color: var(--color-orange);
+  font-style: normal;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.2rem);
+  font-size: 0.85rem;
+}
+nav a {
+  padding-block: 0.65rem;
+  text-decoration: none;
+}
+nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--color-orange);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.55rem;
+}
+.github-link {
+  color: var(--color-muted);
+}
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+}
+button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-text);
+  background: transparent;
+}
+.theme-toggle {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.menu-toggle {
+  display: none;
+  border-radius: var(--radius-sm);
+  padding-inline: 0.7rem;
+  font-size: 0.8rem;
+}
+@media (max-width: 48rem) {
   .header-inner {
-    display: flex;
     min-height: 4.5rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-block: 0.6rem;
   }
-
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    text-decoration: none;
-  }
-
-  .brand-mark {
-    display: grid;
-    width: 2rem;
-    aspect-ratio: 1;
-    place-items: center;
-    border-radius: 0.45rem;
-    color: white;
-    background: var(--color-accent);
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-  }
-
   nav {
-    display: flex;
-    gap: clamp(1rem, 4vw, 2rem);
-    font-size: 0.9rem;
-    font-weight: 650;
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    padding-block: 0.5rem;
   }
-
-  nav a {
-    text-decoration: none;
+  :global(.js) .menu-toggle {
+    display: block;
   }
-
-  .github-link {
-    color: var(--color-muted);
+  :global(.js) nav:not([data-open]) {
+    display: none;
   }
-
-  .github-link:hover {
-    color: var(--color-accent);
+  .brand {
+    font-size: 1.5rem;
   }
-
-  @media (max-width: 32rem) {
-    .brand > span:last-child {
-      display: none;
-    }
-  }
+}
 </style>

@@ -1,0 +1,128 @@
+---
+import HeroCollage from './HeroCollage.astro';
+import Doodle from './decor/Doodle.astro';
+import { profile } from '../data/profile';
+---
+<section class="hero" aria-label="介绍 Leonsux">
+  <div class="hero-copy" data-reveal>
+    <p class="hero-roles">{profile.roles.join(' / ')}</p>
+    <p class="hero-tagline">{profile.tagline}</p>
+    <h1>Hi, I’m<br /><span>{profile.name}<Doodle kind="underline" /></span></h1>
+    <p class="hero-chinese">{profile.headline.map(line => <span>{line}</span>)}</p>
+    <p class="hero-english" lang="en">{profile.english}</p>
+    <div class="hero-actions"><a class="button primary hover-arrow" data-magnetic href="#projects">探索我的项目 <span aria-hidden="true">→</span></a><a class="button hover-arrow" data-magnetic href="#writing">读一些文字 <span aria-hidden="true">↗</span></a></div>
+    <p class="handwritten hero-hand" lang="en">good code. better questions.</p>
+  </div>
+  <HeroCollage />
+</section>
+<style>
+.hero {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  border-bottom: 1px solid var(--color-line);
+}
+.hero-copy {
+  padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 4.5vw, 4.5rem);
+  align-self: center;
+}
+.hero-roles {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-muted);
+  line-height: 1.9;
+  margin: 0 0 var(--space-6);
+  max-width: 28rem;
+}
+.hero-tagline {
+  margin: 0 0 0.75rem;
+  color: var(--color-orange);
+  font: italic 700 clamp(1.45rem, 2.8vw, 2.4rem) / 1.1 var(--font-display);
+  letter-spacing: -0.04em;
+}
+h1 {
+  font: 700 clamp(4rem, 6.5vw, 6.5rem)/0.98 var(--font-display);
+  letter-spacing: -0.055em;
+  margin: 0 0 var(--space-7);
+}
+h1 > span {
+  position: relative;
+  display: inline-block;
+}
+h1 :global(.doodle) {
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  left: 0;
+  bottom: -1.65rem;
+}
+.hero-chinese {
+  font-size: clamp(1.15rem, 1.75vw, 1.55rem);
+  font-weight: 650;
+  line-height: 1.65;
+  margin: 0;
+}
+.hero-chinese span {
+  display: block;
+}
+.hero-english {
+  font: 1.12rem/1.6 var(--font-display);
+  color: var(--color-muted);
+  margin: var(--space-3) 0 0;
+  max-width: 30rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.hero-hand {
+  margin-top: var(--space-5);
+  font-size: 1rem;
+}
+@media (max-width: 64rem) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-copy {
+    padding: var(--space-7);
+    max-width: 48rem;
+    margin: auto;
+    width: 100%;
+  }
+  .hero-roles {
+    max-width: none;
+  }
+  .hero h1 {
+    font-size: clamp(4rem, 10vw, 6rem);
+  }
+  .hero :global(.collage) {
+    margin-bottom: var(--space-7);
+  }
+}
+@media (max-width: 40rem) {
+  .hero-copy {
+    padding: var(--space-7) var(--space-5) var(--space-6);
+  }
+  .hero-roles {
+    font-size: 0.64rem;
+    margin-bottom: var(--space-5);
+  }
+  .hero-tagline {
+    font-size: 1.7rem;
+  }
+  .hero h1 {
+    font-size: 4.25rem;
+  }
+  .hero-actions {
+    gap: var(--space-2);
+  }
+  .hero-actions .button {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+  .hero :global(.collage) {
+    margin-bottom: var(--space-5);
+  }
+}
+</style>

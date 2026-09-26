@@ -6,19 +6,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sortPosts } from '../../utils/posts';
 
 const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+const topics = [...new Set(posts.flatMap(post => post.data.tags))].slice(0, 7);
 ---
 
 <BaseLayout title="文章" description="工程实践、前端基础与 AI 产品构建笔记。">
   <PageIntro eyebrow="Writing" title="文章" description={`共 ${posts.length} 篇。写代码，也记录代码背后的判断、取舍和方法。`} />
   <section class="page-shell listing" aria-label="全部文章">
+    <nav class="topic-links" aria-label="按主题浏览"><span>主题索引</span>{topics.map(tag => <a href={`/tags/#${encodeURIComponent(tag)}`}>{tag}</a>)}<a href="/tags/">全部主题 ↗</a></nav>
     <PostList posts={posts} />
     <p class="archive-link"><a href="/archive/">按年份浏览归档 →</a></p>
   </section>
 </BaseLayout>
 
 <style>
+  .topic-links { display: flex; flex-wrap: wrap; gap: .65rem 1.1rem; margin-bottom: 2rem; font-size: .8rem; }
+  .topic-links span { color: var(--color-muted); }
   .listing {
-    padding-bottom: clamp(4rem, 10vw, 8rem);
+    padding-block: clamp(3rem, 6vw, 4.5rem) clamp(4rem, 10vw, 8rem);
   }
 
   .archive-link {
