@@ -26,6 +26,7 @@
 
 ## 最近验证
 
+- 2026-09-28 21:52：将首页精选项目 `dungeon-arcade` 替换为 `drift-rush`；`npm run check`、`npm run build`、`npm run verify:site`、`npm run verify:urls` 均通过，并确认构建首页仅包含新的试玩与仓库链接。
 - 2026-09-26 21:19：执行 `npm run build`（含 `npm run check`）、`npm run verify:site` 和 `npm run verify:urls`；检查无错误，构建生成 39 页、856 个站内引用与 34 个历史地址均通过。
 - 2026-09-26 17:32：移除首页和项目卡片中关于演示素材的可见占位说明；图片替代文字改为直接描述图像内容。
 - 2026-09-26 14:32：Playwright 检查 1440、1280、1024、768、430、390、375 七档宽度，共 42 个路由／视口组合；无横向溢出、页面错误或缺失图片。
