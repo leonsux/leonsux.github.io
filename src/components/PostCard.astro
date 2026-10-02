@@ -6,7 +6,7 @@ const date = publishedAt.toISOString().slice(0,10).replaceAll('-', '.');
 ---
 <article>
   <div class="post-meta"><time datetime={publishedAt.toISOString()}>{date}</time><span>{tags[0]}</span></div>
-  <h3><a class="hover-arrow" href={href}>{displayText(title)} <span aria-hidden="true">↗</span></a></h3>
+  <h3><a href={href}>{displayText(title)} <span aria-hidden="true">↗</span></a></h3>
   <p>{displayText(description)}</p>
 </article>
 <style>

@@ -2,9 +2,9 @@
 
 ## 当前状态
 
-- 状态：`redesign/personal-site-v2` 已完成实现与本地验证；生产部署未执行。
+- 状态：重构与 Drift Rush 已从 `main` 部署；首页 Writing 区域的悬停文字闪动已完成修复与验证。
 - 目标：以 V3 Demo 的暖纸、森林绿和拼贴语言，重构为可长期维护的个人数字花园。
-- 生产约束：GitHub Pages CI、默认分支和公开部署保持不变，需另行确认。
+- 生产约束：GitHub Pages 仍由 `main` 自动部署；后续提交、推送与公开部署按项目授权规则执行。
 
 ## 已完成
 
@@ -26,6 +26,7 @@
 
 ## 最近验证
 
+- 2026-10-02 19:31：复现 Writing 文章标题悬停时右侧便签文字像素短暂变化；移除标题箭头位移动画后，逐帧截图在悬停与移出期间一致，便签位置保持稳定。`npm run build`（含 Astro 检查）、`npm run verify:site` 和 `npm run verify:urls` 均通过。
 - 2026-10-02 18:31：Drift Rush 更换为专属海岸漂移 SVG 封面；构建（含 Astro 检查）、站点资源检查及 34 个历史 URL 验证通过。Playwright 检查首页与项目页在 1440、390 像素宽度下封面加载、尺寸及横向溢出，并查看卡片截图，结果通过。
 - 2026-09-28 21:52：将首页精选项目 `dungeon-arcade` 替换为 `drift-rush`；`npm run check`、`npm run build`、`npm run verify:site`、`npm run verify:urls` 均通过，并确认构建首页仅包含新的试玩与仓库链接。
 - 2026-09-26 21:19：执行 `npm run build`（含 `npm run check`）、`npm run verify:site` 和 `npm run verify:urls`；检查无错误，构建生成 39 页、856 个站内引用与 34 个历史地址均通过。
