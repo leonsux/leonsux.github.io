@@ -21,11 +21,12 @@
 ## 未完成与待确认
 
 - [ ] 将 `public/images/garden/README.md` 中列出的氛围占位图替换为作者自有或已授权照片。
-- [ ] 如需展示真实项目截图，替换 `project-*.svg` 概念插画；当前插画已明确标注为概念图。
+- [ ] 如需展示真实项目截图，替换 `project-*.svg` 概念插画；素材性质和来源记录在 `public/images/garden/README.md`。
 - [ ] 为“旅行猫咪”“AI Coding Workflow”“儿童电脑启蒙”补充真实资料和入口；当前三项仅保存在数据层的未发布占位，不会出现在首页。
 
 ## 最近验证
 
+- 2026-10-02 18:31：Drift Rush 更换为专属海岸漂移 SVG 封面；构建（含 Astro 检查）、站点资源检查及 34 个历史 URL 验证通过。Playwright 检查首页与项目页在 1440、390 像素宽度下封面加载、尺寸及横向溢出，并查看卡片截图，结果通过。
 - 2026-09-28 21:52：将首页精选项目 `dungeon-arcade` 替换为 `drift-rush`；`npm run check`、`npm run build`、`npm run verify:site`、`npm run verify:urls` 均通过，并确认构建首页仅包含新的试玩与仓库链接。
 - 2026-09-26 21:19：执行 `npm run build`（含 `npm run check`）、`npm run verify:site` 和 `npm run verify:urls`；检查无错误，构建生成 39 页、856 个站内引用与 34 个历史地址均通过。
 - 2026-09-26 17:32：移除首页和项目卡片中关于演示素材的可见占位说明；图片替代文字改为直接描述图像内容。

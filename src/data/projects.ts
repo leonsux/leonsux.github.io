@@ -41,7 +41,7 @@ export const projects: Project[] = [
     title: 'drift-rush',
     description:
       '基于 Three.js 的网页 3D 街机竞速原型：驾驶原创赛车，沿海岸环线漂移、集气并冲刺。',
-    cover: '/images/garden/project-web.svg',
+    cover: '/images/garden/project-drift-rush.svg',
     tags: ['Three.js', '3D 游戏'],
     date: null,
     status: 'active',

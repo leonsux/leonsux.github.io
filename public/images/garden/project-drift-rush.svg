@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+  <title>Drift Rush 海岸漂移赛车插画</title>
+  <defs>
+    <clipPath id="frame"><rect width="640" height="400"/></clipPath>
+    <pattern id="curb" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(25)">
+      <rect width="32" height="32" fill="#f2e7cf"/>
+      <rect width="16" height="32" fill="#c9643c"/>
+    </pattern>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="640" height="400" fill="#e9dcc1"/>
+    <path d="M401-30C422 60 395 104 465 176S476 302 449 430H690V-30Z" fill="#91aaa0"/>
+    <path d="M429-30C451 64 423 104 488 170S502 305 475 430" fill="none" stroke="#f6eed9" stroke-width="7"/>
+    <g fill="none" stroke="#d4dfce" stroke-width="2" stroke-linecap="round" opacity=".65">
+      <path d="M481 51Q507 44 533 51M545 101Q570 93 595 101M519 222Q542 214 565 222M550 330Q574 322 598 330"/>
+      <path d="M512 59H530M573 109H591M549 230H565M578 338H598"/>
+    </g>
+    <path d="M145 462C208 356 418 341 415 212S237 125 286-65" fill="none" stroke="#315a42" stroke-width="112" opacity=".13"/>
+    <path d="M134 456C197 350 407 335 404 206S226 119 275-71" fill="none" stroke="url(#curb)" stroke-width="103"/>
+    <path d="M134 456C197 350 407 335 404 206S226 119 275-71" fill="none" stroke="#344d42" stroke-width="87"/>
+    <path d="M134 456C197 350 407 335 404 206S226 119 275-71" fill="none" stroke="#e9dcc1" stroke-width="2" stroke-dasharray="16 18" opacity=".7"/>
+    <g fill="none" stroke="#1c332b" stroke-width="3" opacity=".75" stroke-linecap="round">
+      <path d="M282 341Q386 324 393 246"/>
+      <path d="M298 352Q411 329 410 250"/>
+    </g>
+    <g fill="#f2e7cf" opacity=".5">
+      <circle cx="377" cy="293" r="13"/><circle cx="393" cy="280" r="10"/>
+      <circle cx="373" cy="274" r="9"/><circle cx="399" cy="301" r="8"/>
+    </g>
+    <g transform="translate(387 228) rotate(28)">
+      <ellipse cx="3" cy="6" rx="32" ry="59" fill="#1c332b" opacity=".28"/>
+      <g fill="#1c332b">
+        <rect x="-28" y="-36" width="10" height="23" rx="3"/>
+        <rect x="18" y="-36" width="10" height="23" rx="3"/>
+        <rect x="-29" y="24" width="11" height="24" rx="3"/>
+        <rect x="18" y="24" width="11" height="24" rx="3"/>
+      </g>
+      <path d="M-19-54Q0-61 19-54L25-21 26 41Q22 53 0 55Q-22 53-26 41L-25-21Z" fill="#c9643c" stroke="#6e3b2d" stroke-width="2"/>
+      <path d="M-4-56H4V53H-4Z" fill="#f3e4c7"/>
+      <path d="M-17-17L17-17 20 3H-20Z" fill="#263d35" stroke="#f3e4c7" stroke-width="2"/>
+      <path d="M-19 7L-17 30H17L19 7Z" fill="#e9dcc1"/>
+      <path d="M-16 34H16L19 43H-19Z" fill="#263d35"/>
+      <path d="M-23 46H23" stroke="#1c332b" stroke-width="6" stroke-linecap="round"/>
+      <path d="M-17-47H-10M10-47H17" stroke="#f9efd7" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-22-5H-29M22-5H29" stroke="#c9643c" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-12 59L-10 75-6 62M6 62L10 82 12 59" fill="#dfac5c"/>
+    </g>
+    <g transform="translate(128 273) rotate(-12)">
+      <path d="M0 3L-5 62" stroke="#987149" stroke-width="7"/>
+      <path d="M0 0Q-33-28-58-6Q-23-3 0 0M0 0Q-10-41 15-55Q13-22 0 0M0 0Q31-33 57-12Q24-8 0 0M0 0Q38 6 39 31Q17 15 0 0M0 0Q-26 8-28 31Q-7 15 0 0" fill="#315a42"/>
+    </g>
+    <g transform="translate(511 278) rotate(10)">
+      <path d="M0 0L0 45" stroke="#987149" stroke-width="5"/>
+      <path d="M0 0Q-24-20-43-4Q-17-2 0 0M0 0Q-8-29 10-39Q9-16 0 0M0 0Q24-24 42-8Q18-6 0 0M0 0Q27 5 28 23Q12 11 0 0" fill="#315a42"/>
+    </g>
+    <g fill="#5a7151" opacity=".55">
+      <path d="M74 188L87 171 100 190ZM105 216L118 199 131 218ZM168 195L181 178 194 197Z"/>
+    </g>
+    <text x="34" y="58" fill="#234b38" font-family="Georgia,serif" font-size="35" font-style="italic">Drift Rush</text>
+    <path d="M36 74H173" stroke="#c9643c" stroke-width="3"/>
+  </g>
+</svg>
